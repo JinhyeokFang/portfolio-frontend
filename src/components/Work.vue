@@ -17,7 +17,10 @@
                   <div class="tag">생활</div>                  
               </div>
               <div class="team">
-
+                  <span>홍길동</span>
+                  <span>홍길동</span>
+                  <span>홍길동</span>
+                  <span>홍길동</span>
               </div>
           </div>
         </div>
@@ -44,9 +47,6 @@
                   <span>홍길동</span>                  
               </div>
           </div>
-          <div class="more">
-            <vs-button vs-type="primary-flat">더보기</vs-button>
-          </div>
         </div>
         <div class="image">
           <img src="http://via.placeholder.com/150x150" alt="">
@@ -56,7 +56,6 @@
 
   </div>
 </template>
-
 
 <script>
 export default {
@@ -97,8 +96,8 @@ export default {
 }
 .card .info .overview{
     height: 4em;
+    overflow: hidden;     
     text-overflow: ellipsis;     
-    overflow: hidden; 
 }
 .card .image{
     width: 150px;
@@ -126,19 +125,18 @@ export default {
     padding: 5px;
     margin-right: 5px;    
     border-radius: 20px;
-    border: 1px solid black;
+    color: #ff960e;
+    border: 1px solid #ff960e;
     text-align: center;
 }
 @media screen and (max-width: 700px) {
     .card{
-        width: 400px;
+        width: 420px;
         height: 250px;
     }
     .overview{
         display: none;  
     }
-    .card .image{
-        margin: 10px;
-    }
+
 }
 </style>
