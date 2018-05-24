@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import Index from '@/components/Index';
-import Work from '@/components/Work';
+import Index from '../spa/Index/Index';
+import Work from '../spa/Work/Work';
 
 import Vuesax from 'vuesax';
 

@@ -1,7 +1,7 @@
 <template>
   <section>
     <nav class="navbar">
-      <a href="/"><img class="logo" src=".././assets/logo.png" alt="선린인터넷고등학교"></a>
+      <a href="/"><img class="logo" src="@/assets/logo.png" alt="선린인터넷고등학교"></a>
     </nav>
     <section class="main-container">
       <section class="info">
@@ -54,7 +54,7 @@ export default {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  background-image: url('../assets/background.png');
+  background-image: url('../../assets/background.png');
   background-position: right;
   background-repeat: no-repeat;
   background-size: contain;
