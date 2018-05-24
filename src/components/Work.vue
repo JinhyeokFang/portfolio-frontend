@@ -60,14 +60,11 @@
 <script>
 export default {
   name: 'Work',
-  data () {
-    return {
-    }
+  data() {
+    return {};
   },
-  methods: {
-
-  }
-}
+  methods: {},
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

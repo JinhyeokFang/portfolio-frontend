@@ -1,26 +1,26 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import Index from '@/components/Index'
-import Work from '@/components/Work'
+import Vue from 'vue';
+import Router from 'vue-router';
+import Index from '@/components/Index';
+import Work from '@/components/Work';
 
-import Vuesax from 'vuesax'
+import Vuesax from 'vuesax';
 
-import 'vuesax/dist/vuesax.css'
+import 'vuesax/dist/vuesax.css';
 
-Vue.use(Vuesax)
-Vue.use(Router)
+Vue.use(Vuesax);
+Vue.use(Router);
 
 export default new Router({
   routes: [
     {
       path: '/',
       name: 'Index',
-      component: Index
+      component: Index,
     },
     {
       path: '/work',
       name: 'Work',
-      component: Work
-    }
-  ]
-})
+      component: Work,
+    },
+  ],
+});

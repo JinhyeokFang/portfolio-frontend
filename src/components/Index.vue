@@ -19,14 +19,13 @@
 <script>
 export default {
   name: 'Index',
-  data () {
+  data() {
     return {
-    }
+    };
   },
   methods: {
-
-  }
-}
+  },
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
