@@ -1,17 +1,15 @@
 <template>
   <div class="card">
     <div class="info">
-      <h1>버블팝</h1>
-      <p class="contest">2017 Smarteen App + Challenge 특별상 수상</p>
-      <div class="overview">
-        <p>{{overview}}</p>
-      </div>
-
-      <div class="details">
-        <div class="tags">
-          <div class="tag">생활</div>
-          <div class="tag">생활</div>
+      <div>
+        <h1 class="title">버블팝</h1>
+        <p class="contest">2017 Smarteen App + Challenge 특별상 수상</p>
+        <div class="overview">
+            <p>{{overview}}</p>
         </div>
+      </div>
+      <div class="details">
+        <tag :groups="groups"></tag>
         <div class="team">
           <span>홍길동</span>
           <span>홍길동</span>
@@ -27,71 +25,81 @@
 </template>
 
 <script>
-    export default {
-        name: 'work-card',
-        props: ['overview'],
-    };
+  import Tag from './Tag.vue';
+  export default {
+    name: 'work-card',
+    props: ['overview', 'groups'],
+    components: {
+      'tag': Tag,
+    },
+  };
+
 </script>
 
 <style>
-.card{
-    width: 600px;
-    height: 280px;
+  .card {
+    width: 650px;
+    height: 250px;
     margin: 10px;
     border-radius: 10px;
     box-shadow: 0px 10px 30px 0 rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: row;
+    justify-content: space-around;
     text-align: left;
-}
-.card .info{
-    margin: 30px 0px 30px 30px;
-}
-.card .info .contest{
+  }
+
+  .card .info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 380px;
+    margin: 20px 0px 20px 20px;
+  }
+  .card .info .title{
+      font-size: 2em;
+  }
+  .card .info .contest {
     margin: 5px 0px;
-}
-.card .info .overview{
-    height: 4em;
-    overflow: hidden;     
-    text-overflow: ellipsis;     
-}
-.card .image{
+  }
+
+  .card .info .overview {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .card .image {
     width: 150px;
     height: 150px;
     margin: 20px;
     box-shadow: 0px 10px 30px 0 rgba(0, 0, 0, 0.15);
-}
-.details{
-    margin-top:10px;    
+  }
+
+  .details {
+    margin-top: 10px;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-}
-.details .team{
+  }
+
+  .details .team {
     width: 200px;
     padding: 5px;
-}
-.details .tags{
-    display: flex;
-    margin-right: 10px;
-}
-.tag{
-    width: 60px;
-    height: 30px;
-    padding: 5px;
-    margin-right: 5px;    
-    border-radius: 20px;
-    color: #ff960e;
-    border: 1px solid #ff960e;
-    text-align: center;
-}
-@media screen and (max-width: 700px) {
-    .card{
-        width: 420px;
-        height: 250px;
+  }
+
+
+  @media screen and (max-width: 700px) {
+    .card {
+      width: 420px;
+      height: 220px;
     }
-    .overview{
-        display: none;  
+    .card .info {
+      width: 200px;
+      justify-content: flex-start;
     }
-}
+    .overview {
+      display: none;
+    }
+  }
+
 </style>

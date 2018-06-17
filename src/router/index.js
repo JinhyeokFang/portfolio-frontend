@@ -2,6 +2,8 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Index from '../spa/Index/Index';
 import Work from '../spa/Work/Work';
+import Search from '../spa/Search/Search';
+
 
 import Vuesax from 'vuesax';
 
@@ -21,6 +23,11 @@ export default new Router({
       path: '/work',
       name: 'Work',
       component: Work,
+    },
+    {
+      path: '/search',
+      name: 'Search',
+      component: Search,
     },
   ],
 });
