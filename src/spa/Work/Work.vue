@@ -16,7 +16,8 @@
         </div>
       </div>
       <section class="cards">
-        <work-card v-for="(item,index) in list" :overview="item.overview" :groups="item.groups" :key="index"></work-card>
+        <work-card v-for="(item,index) in list" :projectName="item.projectName" :groups="item.groups" :team="item.developers"
+                   :contestInfo="item.contestInfo" :overview="item.overview.slice(0,155)+'...'" :key="index"></work-card>
       </section>
     </section>
   </section>
@@ -26,19 +27,39 @@
 <script>
   import Card from '../../components/Card.vue';
   import Navbar from '../../components/Navbar.vue';
+  import jsonData from '../../data/data.json';
 
   export default {
     name: 'Work',
     data() {
       return {
         list: [{
-          overview: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate neque consequatur ab nulla.',
-          team: ['홍길동', '홍길동', '홍길동'],
-          groups: ['생활', '모바일'],
-        }, {
-          overview: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate neque consequatur ab nulla.',
-          team: ['홍길동', '홍길동', '홍길동'],
-          groups: ['생활', '모바일'],
+          'projectName': '',
+          'teamName': '',
+          'developers': [''],
+          'contestInfo': {
+            'type': {
+              'main': 0,
+              'sub': 0,
+            },
+            'rate': 0,
+            'year': 0,
+          },
+          'qualification': [{
+            'title': '',
+            'contents': [{
+              'title': '',
+              'content': '',
+            }],
+          }, {
+            'title': '',
+            'contents': [{
+              'title': '',
+              'content': '',
+            }],
+          }],
+          'overview': '',
+          'description': '',
         }],
       };
     },
@@ -47,6 +68,21 @@
       'navigation-bar': Navbar,
     },
     created() {
+      this.list = Object.values(jsonData).map((v) => {
+        v.groups = [];
+        if (v.contestInfo.type.main === 1) v.contestInfo.type.main = '디지털 콘텐츠 경진대회';
+        else if (v.contestInfo.type.main === 2) {
+          v.contestInfo.type.main = '모바일 콘텐츠 경진대회';
+          v.groups.push('모바일');
+        } else if (v.contestInfo.type.main === 3) v.contestInfo.type.main = '선린 해커톤';
+        if (v.contestInfo.rate === 1) v.contestInfo.rate = '대상';
+        else if (v.contestInfo.rate === 2) v.contestInfo.rate = '금상';
+        if (v.contestInfo.type.sub === 1) v.groups.push('게임');
+        if (v.contestInfo.type.sub === 2) v.groups.push('생활');
+        if (v.contestInfo.type.sub === 3) v.groups.push('영상');
+
+        return v;
+      });
     },
     methods: {},
   };
