@@ -1,6 +1,6 @@
 <template>
     <div class="tags">
-        <div class="" v-for="(group,key) in groups" :key="key">
+        <div v-for="(group,key) in groups" :key="key">
             <div class="tag">{{group}}</div>
         </div>
     </div>
@@ -24,6 +24,7 @@
     padding: 5px;
     margin-right: 5px;
     border-radius: 20px;
+    font-size: 0.8rem;
     color: #ff960e;
     border: 1px solid #ff960e;
     text-align: center;

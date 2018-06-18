@@ -38,7 +38,7 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   * {
-    color: #444444;
+    color: #000000;
   }
 
   .navbar {
@@ -78,7 +78,7 @@
     margin-top: 50px;
     width: 120px;
     height: 10px;
-    background-color: #444444;
+    background-color: #000000;
   }
 
   .buttons {
@@ -102,7 +102,7 @@
   }
 
   .info .search.btn {
-    background-color: #444444;
+    background-color: #000000;
     color: #fff;
   }
 

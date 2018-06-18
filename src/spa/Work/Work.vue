@@ -17,6 +17,8 @@
       </div>
       <section class="cards">
         <work-card :overview="overview" :groups="groups"></work-card>
+        <work-card :overview="overview" :groups="groups"></work-card>
+
       </section>
     </section>
   </section>
@@ -54,6 +56,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
     margin-bottom: 50px;
   }
   .header > .title > h1{
@@ -65,9 +68,6 @@
     height: 10px;
     margin: 20px 0px 0px 0px;
     background-color: #000000;
-  }
-  .order-select{
-    margin-left: 10px;
   }
   .order-select select{
     outline: none;
