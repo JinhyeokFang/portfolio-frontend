@@ -8,11 +8,11 @@
 </template>
 
 <style scoped>
-.custom-checbox:checked + label::before {
+  .custom-checbox:checked + label::before {
     background-color: #f2f2f2;
-}
+  }
 
-.custom-checbox:checked + label::after {
+  .custom-checbox:checked + label::after {
     display: block;
     position: absolute;
     top: 0.2rem;
@@ -23,7 +23,7 @@
     border-width: 0 2px 2px 0;
     transform: rotate(45deg);
     content: '';
-}
+  }
 
 
 </style>
