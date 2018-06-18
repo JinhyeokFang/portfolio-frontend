@@ -39,11 +39,11 @@
           'developers': [''],
           'contestInfo': {
             'type': {
-              'main': 0,
-              'sub': 0,
+              'main': '',
+              'sub': '',
             },
-            'rate': 0,
-            'year': 0,
+            'rate': '',
+            'year': 2017,
           },
           'qualification': [{
             'title': '',
@@ -69,18 +69,13 @@
     },
     created() {
       this.list = Object.values(jsonData).map((v) => {
-        v.groups = [];
-        if (v.contestInfo.type.main === 1) v.contestInfo.type.main = '디지털 콘텐츠 경진대회';
-        else if (v.contestInfo.type.main === 2) {
-          v.contestInfo.type.main = '모바일 콘텐츠 경진대회';
-          v.groups.push('모바일');
-        } else if (v.contestInfo.type.main === 3) v.contestInfo.type.main = '선린 해커톤';
-        if (v.contestInfo.rate === 1) v.contestInfo.rate = '대상';
-        else if (v.contestInfo.rate === 2) v.contestInfo.rate = '금상';
-        if (v.contestInfo.type.sub === 1) v.groups.push('게임');
-        if (v.contestInfo.type.sub === 2) v.groups.push('생활');
-        if (v.contestInfo.type.sub === 3) v.groups.push('영상');
-
+        const contest = ['디지털 콘텐츠 경진대회', '모바일 콘텐츠 경진대회', '선린 해커톤'];
+        const prize = ['대상', '금상'];
+        const tags = ['모바일', '게임', '생활', '영상'];
+        v.groups = [tags[v.contestInfo.type.sub]];
+        if (v.contestInfo.type.main === 2) v.groups.push(tags[0]);
+        v.contestInfo.type.main = contest[v.contestInfo.type.main - 1];
+        v.contestInfo.rate = prize[v.contestInfo.rate - 1];
         return v;
       });
     },
