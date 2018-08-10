@@ -16,14 +16,8 @@
         </div>
       </div>
       <section class="cards">
-<<<<<<< HEAD
-        <work-card :overview="overview" :groups="groups"></work-card>
-        <work-card :overview="overview" :groups="groups"></work-card>
-
-=======
         <work-card v-for="(item,index) in list" :projectName="item.projectName" :groups="item.groups" :team="item.developers"
-                   :contestInfo="item.contestInfo" :overview="item.overview.slice(0,155)+'...'" :key="index"></work-card>
->>>>>>> fe350798c8a4132b56682ee9b4b40d06d89d4aaa
+                   :contestInfo="item.contestInfo" :overview="item.overview.slice(0,85)+'...'" :key="index"></work-card>
       </section>
     </section>
   </section>
@@ -116,16 +110,7 @@
     margin: 20px 0px 0px 0px;
     background-color: #000000;
   }
-<<<<<<< HEAD
   .order-select select{
-=======
-
-  .order-select {
-    margin-left: 10px;
-  }
-
-  .order-select select {
->>>>>>> fe350798c8a4132b56682ee9b4b40d06d89d4aaa
     outline: none;
     margin-left: 80px;
     -webkit-appearance: none;
