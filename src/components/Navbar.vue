@@ -7,24 +7,25 @@
 </template>
 
 <script>
-export default {
-  name: 'navigation-bar',
-};
+  export default {
+    name: 'navigation-bar',
+  };
 </script>
 
 <style>
-.navbar{
-  height: 120px;
-  width: 100%;
-  max-width: 80%;
-  margin: 0 auto;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
-.logo{
+  .navbar {
+    height: 120px;
+    width: 100%;
+    max-width: 80%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .logo {
     width: 200px;
-}
+  }
 
 
 </style>

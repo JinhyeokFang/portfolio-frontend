@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <section>
     <navigation-bar></navigation-bar>
     <section class="main-container">
@@ -22,6 +22,7 @@
 
 <script>
   import Navbar from '../../components/Navbar.vue';
+
   export default {
     name: 'Index',
     components: {
@@ -63,9 +64,7 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    background-image: url('../../assets/background.png');
-    background-position: right;
-    background-repeat: no-repeat;
+    background: url('../../assets/background.png') no-repeat right;
     background-size: contain;
   }
 
@@ -95,9 +94,9 @@
     line-height: 60px;
     border-radius: 100px;
     font-size: 1.5rem;
-    -webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.2);
-    -moz-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.2);
-    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.2);
+    -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
     text-decoration: none;
   }
 
@@ -113,20 +112,23 @@
   .main-container img {
     height: 650px;
   }
-  .bottom{
+
+  .bottom {
     left: 50%;
     transform: translateX(-50%);
     position: absolute;
     bottom: 0;
   }
-  .alert{
+
+  .alert {
     line-height: 50px;
     width: 500px;
     height: 50px;
     background-color: #ff7f7b;
-    border-radius: 20px 20px 0px 0px;
+    border-radius: 20px 20px 0 0;
   }
-  .alert > p{
+
+  .alert > p {
     color: #fff;
   }
 
@@ -134,18 +136,22 @@
     .title {
       font-size: 3rem;
     }
+
     .main-container {
       justify-content: center;
       align-items: center;
       background: none;
     }
+
     .bar {
       width: 80%;
       margin: 50px auto;
     }
+
     .buttons {
       justify-content: center;
     }
+
     .btn {
       margin: 10px;
     }

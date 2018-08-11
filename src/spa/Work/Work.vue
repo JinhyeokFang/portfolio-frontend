@@ -27,7 +27,7 @@
 <script>
   import Card from '../../components/Card.vue';
   import Navbar from '../../components/Navbar.vue';
-  import jsonData from '../../data/data.json';
+  import axios from 'axios';
 
   export default {
     name: 'Work',
@@ -51,12 +51,6 @@
               'title': '',
               'content': '',
             }],
-          }, {
-            'title': '',
-            'contents': [{
-              'title': '',
-              'content': '',
-            }],
           }],
           'overview': '',
           'description': '',
@@ -68,16 +62,19 @@
       'navigation-bar': Navbar,
     },
     created() {
-      this.list = Object.values(jsonData).map((v) => {
-        const contest = ['디지털 콘텐츠 경진대회', '모바일 콘텐츠 경진대회', '선린 해커톤'];
-        const prize = ['대상', '금상'];
-        const tags = ['모바일', '게임', '생활', '영상'];
-        v.groups = [tags[v.contestInfo.type.sub]];
-        if (v.contestInfo.type.main === 2) v.groups.push(tags[0]);
-        v.contestInfo.type.main = contest[v.contestInfo.type.main - 1];
-        v.contestInfo.rate = prize[v.contestInfo.rate - 1];
-        return v;
-      });
+      axios.get('http://ec2-18-222-183-3.us-east-2.compute.amazonaws.com/api/list/2').then((v) => {
+        this.list = v.data.map((v) => {
+          console.log(v);
+          const contest = ['디지털 콘텐츠 경진대회', '모바일 콘텐츠 경진대회', '선린 해커톤'];
+          const prize = ['대상', '금상'];
+          const tags = ['모바일', '게임', '생활', '영상'];
+          v.groups = [tags[v.contestInfo.type.sub]];
+          if (v.contestInfo.type.main === 2) v.groups.push(tags[0]);
+          v.contestInfo.type.main = contest[v.contestInfo.type.main - 1];
+          v.contestInfo.rate = prize[v.contestInfo.rate - 1];
+          return v;
+        });
+      }).catch((e) => console.log(e));
     },
     methods: {},
   };
@@ -107,15 +104,15 @@
   .bar {
     width: 190px;
     height: 10px;
-    margin: 20px 0px 0px 0px;
+    margin: 20px 0 0 0;
     background-color: #000000;
   }
-  .order-select select{
+
+  .order-select select {
     outline: none;
     margin-left: 80px;
     -webkit-appearance: none;
     appearance: none;
-    background: transparent;
     font-size: 1.2rem;
     text-align: center;
     text-align-last: center; /* chrome */
@@ -123,8 +120,7 @@
     height: 40px;
     border: 3px solid black;
     border-radius: 24px;
-    background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
-    background-repeat: no-repeat;
+    background: transparent url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>") no-repeat;
     background-position-x: 100%;
     background-position-y: 5px;
   }
