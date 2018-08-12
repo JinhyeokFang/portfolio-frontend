@@ -17,7 +17,8 @@
       </div>
       <section class="cards">
         <work-card v-for="(item,index) in list" :projectName="item.projectName" :groups="item.groups" :team="item.developers"
-                   :contestInfo="item.contestInfo" :overview="item.overview.slice(0,85)+'...'" :key="index"></work-card>
+                   :contestInfo="item.contestInfo" :overview="item.overview" :qualification="item.qualification" :key="index">
+        </work-card>
       </section>
     </section>
   </section>

@@ -6,7 +6,7 @@
           <h1 class="title">{{projectName}}</h1>
           <p class="contest">{{contestInfo.type.main}} {{contestInfo.rate}}</p>
           <div class="overview">
-            <p v-html="overview"></p>
+            <p v-html="overview.slice(0,85)+'...'"></p>
           </div>
         </div>
       </div>
@@ -20,10 +20,12 @@
         <tag :groups="groups"></tag>
         <div class="team">
           <span v-for="(item, index) in team" :key="index">{{item}}  </span>
-        </div>        
+        </div>
       </div>
       <div>
-        <button class="more-btn">More</button>
+        <button class="more-btn" @click="showModal = true">More</button>
+        <moreView v-if="showModal" @close="showModal = false" :projectName="projectName" :groups="groups" :team="team"
+                  :contestInfo="contestInfo" :overview="overview" :qualification="qualification"></moreView>
       </div>
     </div>
   </div>
@@ -32,12 +34,19 @@
 
 <script>
   import Tag from './Tag.vue';
+  import MoreView from './MoreView.vue';
 
   export default {
     name: 'work-card',
-    props: ['overview', 'groups', 'team', 'projectName', 'contestInfo'],
+    props: ['overview', 'groups', 'team', 'projectName', 'contestInfo', 'qualification'],
     components: {
       'tag': Tag,
+      'moreView': MoreView,
+    },
+    data() {
+      return {
+        showModal: false,
+      };
     },
   };
 
@@ -49,23 +58,24 @@
     height: 250px;
     margin: 10px;
     border-radius: 10px;
-    box-shadow: 0px 10px 30px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: left;
   }
-  .col{
+
+  .col {
     display: flex;
     flex-direction: row;
-    margin: 15px 15px 0px 15px;
+    margin: 15px 15px 0 15px;
   }
 
   .card .info {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    margin: 20px 0px 20px 20px;
+    margin: 20px 0 20px 20px;
   }
 
   .card .info .title {
@@ -73,14 +83,14 @@
   }
 
   .card .info .contest {
-    margin: 5px 0px;
+    margin: 5px 0;
   }
 
   .card .image {
     width: 150px;
     height: 150px;
     margin: 20px;
-    box-shadow: 0px 10px 30px 0 rgba(0, 0, 0, 0.15);
+    box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.15);
   }
 
   .details {
@@ -98,7 +108,8 @@
   .details .team {
     padding: 5px;
   }
-  .more-btn{
+
+  .more-btn {
     width: 120px;
     height: 30px;
   }
@@ -113,9 +124,11 @@
       width: 200px;
       justify-content: flex-start;
     }
-    .card .info .title{
+
+    .card .info .title {
       font-size: 1.5rem;
     }
+
     .overview {
       display: none;
     }
