@@ -66,7 +66,6 @@
     created() {
       axios.get(URL).then((v) => {
         this.list = v.data.map((v) => {
-          console.log(v);
           const contest = ['디지털 콘텐츠 경진대회', '모바일 콘텐츠 경진대회', '선린 해커톤'];
           const prize = ['대상', '금상'];
           const tags = ['모바일', '게임', '생활', '영상'];
