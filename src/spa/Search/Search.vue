@@ -36,6 +36,31 @@
               <input type="checkbox" id="ai" value="selected_ai" v-model="checkedType" disabled>
               <label for="ai">AI(인공지능)</label>
             </div>
+            <div class="checkbox">
+              <input type="checkbox" id="grand" value="selected_grand" v-model="checkedType">
+              <label for="grand">대상</label>
+            </div>
+            <div class="checkbox">
+              <input type="checkbox" id="gold" value="selected_gold" v-model="checkedType">
+              <label for="gold">금상</label>
+            </div>
+            <div class="checkbox">
+              <input type="checkbox" id="silver" value="selected_silver" v-model="checkedType">
+              <label for="silver">은상</label>
+            </div>
+            <div class="checkbox">
+              <input type="checkbox" id="bronze" value="selected_bronze" v-model="checkedType">
+              <label for="bronze">동상</label>
+            </div>
+            <!--div class="checkbox"> 서버측에서 연도별 검색 미지원
+               <span>연도</span> <input type="number" min="2015" :max="new Date().getFullYear()" id="year" v-model="year" title="year">
+             </div>-->
+            <div class="checkbox">
+              <span>개발자명</span> <input type="text" id="developer" placeHolder="1명의 이름만 입력하세요" v-model="developer" title="developer">
+            </div>
+            <div class="checkbox">
+              <span>프로젝트명</span> <input type="text" id="project-name" v-model="projectName" title="project name">
+            </div>
           </div>
         </div>
         <div class="btn-container">
@@ -85,6 +110,9 @@
       return {
         checkedType: [],
         list: [],
+        year: 0,
+        developer: '',
+        projectName: '',
         loadedProject: [],
       };
     },
@@ -94,24 +122,32 @@
        */
       search() {
         /**
+         * 기존 데이터 초기화
+         */
+        this.list = [];
+        this.loadedProject = [];
+        /**
          * 검색 내용이 있는지 확인
          */
-        if (this.checkedType.length > -1) {
-          const querys = this.checkedType.map((v) => {
-            if (v === 'selected_game') return 'subType=1';
-            else if (v === 'selected_life') return 'subType=2';
-            else if (v === 'selected_things') return '';
-            else if (v === 'selected_mobile') return 'type=2';
-            else if (v === 'selected_web') return '';
-            else if (v === 'selected_ai') return '';
-            else if (v >= 2001) return `date=${v}`;
-            else if (v === 'selected_grand') return 'rate=1';
-            else if (v === 'selected_gold') return 'rate=2';
-            else if (v === 'selected_silver') return 'rate=3';
-            else if (v === 'selected_bronze') return 'rate=4';
-            else return `name=${v}`;
-          });
-          Promise.all(querys.map((v) => new Promise((resolve, reject) => axios.get(`${URL}${v}`)
+        const queries = this.checkedType.map((v) => {
+          v = v.split('_')[1];
+          if (v === 'game') return 'subType=1';
+          else if (v === 'life') return 'subType=2';
+          // else if (v === 'things') return '';
+          else if (v === 'mobile') return 'type=2';
+          // else if (v === 'web') return '';
+          // else if (v === 'ai') return '';
+          else if (v === 'grand') return 'rate=1';
+          else if (v === 'gold') return 'rate=2';
+          else if (v === 'silver') return 'rate=3';
+          else if (v === 'bronze') return 'rate=4';
+        });
+        // 서버측에서 연도별 검색 미지원
+        // if (this.year && this.year >= 2001) queries.push(`date=${this.year}`);
+        if (this.developer) queries.push(`developer=${this.developer}`);
+        if (this.projectName) queries.push(`name=${this.projectName}`);
+        if (queries.length !== 0) {
+          Promise.all(queries.map((v) => new Promise((resolve, reject) => axios.get(`${URL}${v}`)
             .then((v) => resolve(v))
             .catch(() => reject())
           )))
