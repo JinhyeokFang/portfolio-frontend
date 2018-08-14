@@ -30,6 +30,7 @@
   import Navbar from '../../components/Navbar.vue';
   import axios from 'axios';
 
+  const URL = 'http://ec2-18-222-183-3.us-east-2.compute.amazonaws.com/api/list/2';
   export default {
     name: 'Work',
     data() {
@@ -63,7 +64,7 @@
       'navigation-bar': Navbar,
     },
     created() {
-      axios.get('http://ec2-18-222-183-3.us-east-2.compute.amazonaws.com/api/list/2').then((v) => {
+      axios.get(URL).then((v) => {
         this.list = v.data.map((v) => {
           console.log(v);
           const contest = ['디지털 콘텐츠 경진대회', '모바일 콘텐츠 경진대회', '선린 해커톤'];
