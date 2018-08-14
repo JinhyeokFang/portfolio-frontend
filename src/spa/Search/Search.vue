@@ -13,33 +13,33 @@
           </div>
           <div class="checkbox-row">
             <div class="checkbox">
-              <input type="checkbox" id="game" value="selected_game">
+              <input type="checkbox" id="game" value="selected_game" v-model="checkedType">
               <label for="game">게임</label>
             </div>
             <div class="checkbox">
-              <input type="checkbox" id="life" value="selected_life">
+              <input type="checkbox" id="life" value="selected_life" v-model="checkedType">
               <label for="life">생활</label>
             </div>
             <div class="checkbox">
-              <input type="checkbox" id="things" value="selected_things" disabled>
+              <input type="checkbox" id="things" value="selected_things" v-model="checkedType" disabled>
               <label for="things">IoT</label>
             </div>
             <div class="checkbox">
-              <input type="checkbox" id="mobile" value="selected_mobile">
+              <input type="checkbox" id="mobile" value="selected_mobile" v-model="checkedType">
               <label for="mobile">모바일</label>
             </div>
             <div class="checkbox">
-              <input type="checkbox" id="web" value="selected_web" disabled>
+              <input type="checkbox" id="web" value="selected_web" v-model="checkedType" disabled>
               <label for="web">웹</label>
             </div>
             <div class="checkbox">
-              <input type="checkbox" id="ai" value="selected_ai" disabled>
+              <input type="checkbox" id="ai" value="selected_ai" v-model="checkedType" disabled>
               <label for="ai">AI(인공지능)</label>
             </div>
           </div>
         </div>
         <div class="btn-container">
-          <button class="search-btn">검색하기</button>
+          <button class="search-btn" @click="search">검색하기</button>
         </div>
       </div>
       <div class="row2">
@@ -54,9 +54,9 @@
         </div>
         <div class="result-order-select">
           <select>
-            <option value="">최신순</option>
-            <option value="">최신순</option>
-            <option value="">최신순</option>
+            <option value="">-</option>
+            <option value="">-</option>
+            <option value="">-</option>
           </select>
         </div>
       </div>
@@ -84,9 +84,58 @@
     data() {
       return {
         checkedType: [],
+        list: [],
+        loadedProject: [],
       };
     },
-
+    methods: {
+      /**
+       * 검색 메소드
+       */
+      search() {
+        /**
+         * 검색 내용이 있는지 확인
+         */
+        if (this.checkedType.length > -1) {
+          const querys = this.checkedType.map((v) => {
+            if (v === 'selected_game') return 'subType=1';
+            else if (v === 'selected_life') return 'subType=2';
+            else if (v === 'selected_things') return '';
+            else if (v === 'selected_mobile') return 'type=2';
+            else if (v === 'selected_web') return '';
+            else if (v === 'selected_ai') return '';
+            else if (v >= 2001) return `date=${v}`;
+            else if (v === 'selected_grand') return 'rate=1';
+            else if (v === 'selected_gold') return 'rate=2';
+            else if (v === 'selected_silver') return 'rate=3';
+            else if (v === 'selected_bronze') return 'rate=4';
+            else return `name=${v}`;
+          });
+          Promise.all(querys.map((v) => new Promise((resolve, reject) => axios.get(`${URL}${v}`)
+            .then((v) => resolve(v))
+            .catch(() => reject())
+          )))
+            .then((v) => {
+              v.forEach((v) => v.data.forEach((v) => {
+                if (!this.loadedProject.includes(v.projectName)) {
+                  const contest = ['디지털 콘텐츠 경진대회', '모바일 콘텐츠 경진대회', '선린 해커톤'];
+                  const prize = ['대상', '금상'];
+                  const tags = ['모바일', '게임', '생활', '영상'];
+                  v.groups = [tags[v.contestInfo.type.sub]];
+                  if (v.contestInfo.type.main === 2) v.groups.push(tags[0]);
+                  v.contestInfo.type.main = contest[v.contestInfo.type.main - 1];
+                  v.contestInfo.rate = prize[v.contestInfo.rate - 1];
+                  this.list.push(v);
+                  this.loadedProject = this.list.map((v) => v.projectName);
+                }
+              }));
+            })
+            .catch(() => alert('검색 중, 오류가 발생하였습니다.'));
+        } else {
+          alert('검색할 조건을 선택하시거나 입력하여주세요.');
+        }
+      },
+    },
 
   };
 </script>

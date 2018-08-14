@@ -9,9 +9,9 @@
         </div>
         <div class="order-select">
           <select>
-            <option value="">최신순</option>
-            <option value="">최신순</option>
-            <option value="">최신순</option>
+            <option value="">-</option>
+            <option value="">-</option>
+            <option value="">-</option>
           </select>
         </div>
       </div>
