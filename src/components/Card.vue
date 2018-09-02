@@ -22,9 +22,6 @@
           <span v-for="(item, index) in team" :key="index">{{item}}  </span>
         </div>
       </div>
-      <div>
-        <button class="more-btn">More</button>
-      </div>
     </div>
   </div>
 
@@ -101,11 +98,6 @@
 
   .details .team {
     padding: 5px;
-  }
-
-  .more-btn {
-    width: 120px;
-    height: 30px;
   }
 
   @media screen and (max-width: 700px) {
