@@ -11,11 +11,10 @@
 </template>
 
 <script>
-  import showDown from 'showdown';
   import axios from 'axios';
   import Navbar from './Navbar.vue';
+  import * as markdown from '../lib/markdown';
 
-  const converter = new showDown.Converter();
 
   const URL = 'http://ec2-18-222-183-3.us-east-2.compute.amazonaws.com/api/description?id=1';
   export default {
@@ -31,7 +30,7 @@
     },
     methods: {
       markdownChanged() {
-        this.html = converter.makeHtml(this.markdown);
+        this.html = markdown.rendering(this.markdown);
       },
     },
     mounted() {
@@ -53,7 +52,7 @@
     display: flex;
     justify-content: center;
     padding: 20px;
-    width:80%;
+    width: 80%;
     margin: auto;
     text-align: left;
   }
