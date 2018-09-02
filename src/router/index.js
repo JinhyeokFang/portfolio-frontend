@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import Index from '../spa/Index/Index';
 import Work from '../spa/Work/Work';
 import Search from '../spa/Search/Search';
+import MoreView from '../components/MoreView';
 
 
 import Vuesax from 'vuesax';
@@ -28,6 +29,11 @@ export default new Router({
       path: '/search',
       name: 'Search',
       component: Search,
+    },
+    {
+      path: '/detail',
+      name: 'Detail',
+      component: MoreView,
     },
   ],
 });
