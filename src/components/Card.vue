@@ -50,7 +50,6 @@
 <style>
   .card {
     width: 600px;
-    height: 250px;
     margin: 10px;
     border-radius: 10px;
     box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.1);

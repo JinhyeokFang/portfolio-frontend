@@ -97,8 +97,10 @@
   import axios from 'axios';
   import Card from '../../components/Card.vue';
   import Navbar from '../../components/Navbar.vue';
+  import * as markdown from '../../lib/markdown';
 
-  const URL = 'http://ec2-18-222-183-3.us-east-2.compute.amazonaws.com/api/list/2/?';
+  const SearchQueryURL = 'http://ec2-18-222-183-3.us-east-2.compute.amazonaws.com/api/list?division=software&';
+  const OverViewLoadURL = 'http://ec2-18-222-183-3.us-east-2.compute.amazonaws.com/api/overview?id=';
 
   export default {
     name: 'Search',
@@ -129,44 +131,40 @@
         /**
          * 검색 내용이 있는지 확인
          */
-        const queries = this.checkedType.map((v) => {
-          v = v.split('_')[1];
-          if (v === 'game') return 'subType=1';
-          else if (v === 'life') return 'subType=2';
-          // else if (v === 'things') return '';
-          else if (v === 'mobile') return 'type=2';
-          // else if (v === 'web') return '';
-          // else if (v === 'ai') return '';
-          else if (v === 'grand') return 'rate=1';
-          else if (v === 'gold') return 'rate=2';
-          else if (v === 'silver') return 'rate=3';
-          else if (v === 'bronze') return 'rate=4';
+        const queries = this.checkedType.map((checkedType) => {
+          checkedType = checkedType.split('_')[1];
+          if (checkedType === 'game') return 'subType=1';
+          else if (checkedType === 'life') return 'subType=2';
+          // else if (checkedType === 'things') return '';
+          else if (checkedType === 'mobile') return 'type=2';
+          // else if (checkedType === 'web') return '';
+          // else if (checkedType === 'ai') return '';
+          else if (checkedType === 'grand') return 'rate=1';
+          else if (checkedType === 'gold') return 'rate=2';
+          else if (checkedType === 'silver') return 'rate=3';
+          else if (checkedType === 'bronze') return 'rate=4';
         });
         // 서버측에서 연도별 검색 미지원
         // if (this.year && this.year >= 2001) queries.push(`date=${this.year}`);
         if (this.developer) queries.push(`developer=${this.developer}`);
         if (this.projectName) queries.push(`name=${this.projectName}`);
         if (queries.length !== 0) {
-          Promise.all(queries.map((v) => new Promise((resolve, reject) => axios.get(`${URL}${v}`)
-            .then((v) => resolve(v))
+          Promise.all(queries.map((query) => new Promise((resolve, reject) => axios.get(`${SearchQueryURL}${query}`)
+            .then((response) => resolve(response.data))
             .catch(() => reject())
           )))
-            .then((v) => {
-              v.forEach((v) => v.data.forEach((v) => {
-                if (!this.loadedProject.includes(v.projectName)) {
-                  const contest = ['디지털 콘텐츠 경진대회', '모바일 콘텐츠 경진대회', '선린 해커톤'];
-                  const prize = ['대상', '금상'];
-                  const tags = ['모바일', '게임', '생활', '영상'];
-                  v.groups = [tags[v.contestInfo.type.sub]];
-                  if (v.contestInfo.type.main === 2) v.groups.push(tags[0]);
-                  v.contestInfo.type.main = contest[v.contestInfo.type.main - 1];
-                  v.contestInfo.rate = prize[v.contestInfo.rate - 1];
-                  this.list.push(v);
-                  this.loadedProject = this.list.map((v) => v.projectName);
+            .then((dataArrayList) => {
+              dataArrayList.forEach((dataList) => dataList.forEach((cardData) => {
+                if (!this.loadedProject.includes(cardData.projectName)) {
+                  this.loadedProject = this.list.map((projectData) => projectData.projectName);
+                  axios.get(`${OverViewLoadURL}${cardData.id}`).then((overView) => {
+                    cardData.overview = markdown.rendering(overView.data);
+                    this.list.push(cardData);
+                  });
                 }
               }));
             })
-            .catch(() => alert('검색 중, 오류가 발생하였습니다.'));
+            .catch((err) => alert(err));
         } else {
           alert('검색할 조건을 선택하시거나 입력하여주세요.');
         }
