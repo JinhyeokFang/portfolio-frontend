@@ -4,9 +4,9 @@
       <div class="info">
         <div>
           <h1 class="title">{{projectName}}</h1>
-          <p class="contest">{{contestInfo.type.main}} {{contestInfo.rate}}</p>
+          <p class="contest">{{contestInfo.contest}} {{contestInfo.rate}}</p>
           <div class="overview">
-            <p v-html="overview.slice(0,85)+'...'"></p>
+            <p v-html="overview"></p>
           </div>
         </div>
       </div>
@@ -23,9 +23,7 @@
         </div>
       </div>
       <div>
-        <button class="more-btn" @click="showModal = true">More</button>
-        <moreView v-if="showModal" @close="showModal = false" :projectName="projectName" :groups="groups" :team="team"
-                  :contestInfo="contestInfo" :overview="overview" :qualification="qualification"></moreView>
+        <button class="more-btn">More</button>
       </div>
     </div>
   </div>
@@ -34,18 +32,15 @@
 
 <script>
   import Tag from './Tag.vue';
-  import MoreView from './MoreView.vue';
 
   export default {
     name: 'work-card',
     props: ['overview', 'groups', 'team', 'projectName', 'contestInfo', 'qualification'],
     components: {
       'tag': Tag,
-      'moreView': MoreView,
     },
     data() {
       return {
-        showModal: false,
       };
     },
   };
