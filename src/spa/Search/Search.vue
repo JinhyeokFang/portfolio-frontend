@@ -21,6 +21,10 @@
               <label for="life">생활</label>
             </div>
             <div class="checkbox">
+              <input type="checkbox" id="multi" value="selected_multi" v-model="checkedType">
+              <label for="multi">멀티미디어</label>
+            </div>
+            <div class="checkbox">
               <input type="checkbox" id="things" value="selected_things" v-model="checkedType" disabled>
               <label for="things">IoT</label>
             </div>
@@ -135,6 +139,7 @@
           checkedType = checkedType.split('_')[1];
           if (checkedType === 'game') return 'subType=1';
           else if (checkedType === 'life') return 'subType=2';
+          else if (checkedType === 'multi') return 'subType=3';
           // else if (checkedType === 'things') return '';
           else if (checkedType === 'mobile') return 'type=2';
           // else if (checkedType === 'web') return '';
