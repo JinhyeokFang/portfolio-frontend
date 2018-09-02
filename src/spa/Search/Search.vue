@@ -178,7 +178,6 @@
     width: 100%;
     max-width: 80%;
     margin: 0 auto;
-    min-height: 100vh;
     display: flex;
     flex-direction: row;
     justify-content: center;
