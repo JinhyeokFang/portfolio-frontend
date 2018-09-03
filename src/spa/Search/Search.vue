@@ -56,9 +56,9 @@
               <input type="checkbox" id="bronze" value="selected_bronze" v-model="checkedType">
               <label for="bronze">동상</label>
             </div>
-            <!--div class="checkbox"> 서버측에서 연도별 검색 미지원
-               <span>연도</span> <input type="number" min="2015" :max="new Date().getFullYear()" id="year" v-model="year" title="year">
-             </div>-->
+            <div class="checkbox">
+              <span>연도</span> <input type="number" min="2015" :max="new Date().getFullYear()" id="year" v-model="year" title="year">
+            </div>
             <div class="checkbox">
               <span>개발자명</span> <input type="text" id="developer" placeHolder="1명의 이름만 입력하세요" v-model="developer" title="developer">
             </div>
@@ -147,8 +147,7 @@
           else if (checkedType === 'silver') return 'rate=3';
           else if (checkedType === 'bronze') return 'rate=4';
         });
-        // 서버측에서 연도별 검색 미지원
-        // if (this.year && this.year >= 2001) queries.push(`date=${this.year}`);
+        if (this.year && this.year >= 2015) queries.push(`date=${this.year}`);
         if (this.developer) queries.push(`developer=${this.developer}`);
         if (this.projectName) queries.push(`name=${this.projectName}`);
         if (queries.length !== 0) {
