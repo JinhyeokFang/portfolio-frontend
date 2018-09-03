@@ -16,7 +16,7 @@
     "showdown": "^1.8.6",
     "vue": "^2.5.16",
     "vue-router": "^3.0.1",
-    "vuesax": "^3.0.18"
+    "vuesax": "^3.2.24"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
