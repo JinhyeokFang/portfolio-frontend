@@ -4,33 +4,25 @@
       <div class="modal-wrapper">
         <div class="modal-container">
           <button class="modal-default-button" @click="$emit('close')">X</button>
-          <div class="col">
-            <div class="image">
-              <img src="http://via.placeholder.com/150x150" alt="">
-            </div>
-            <div class="info">
-              <div>
-                <h1 class="title">{{projectName}}</h1>
-                <p class="contest">{{contestInfo.type.main}} {{contestInfo.rate}}</p>
-
+          <div class="specs">
+            <div class="row">
+              <div class="image">
+                <img src="http://via.placeholder.com/150x150" alt="">
+              </div>
+              <h1 class="title">{{projectName}}</h1>
+              <p class="contest">{{contestInfo.type.main}} {{contestInfo.rate}}</p>
+              <tag :groups="groups"></tag>
+              <div class="team">
+                <span v-for="(item, index) in team" :key="index">{{item}}  </span>
               </div>
             </div>
-            <div class="details">
-              <div>
-                <tag :groups="groups"></tag>
-                <div class="team">
-                  <span v-for="(item, index) in team" :key="index">{{item}}  </span>
-                </div>
-              </div>
-            </div>
-            <div class="details" v-for="(item1, index) in qualification" :key="index">
-              <div v-for="(item2, index) in item1.contents" :key="index" style="width:180px">
+            <div class="row" v-for="(item1, index) in qualification" :key="index">
+              <div v-for="(item2, index) in item1.contents" :key="index">
                 <div v-if="item2.content.length!==0">
                   <h1>{{item2.title}}</h1>
                   <tag v-if="item2.content.indexOf(',') > -1" :groups="item2.content.split(', ')"></tag>
                   <tag v-else :groups="[item2.content]"></tag>
                 </div>
-
               </div>
             </div>
           </div>
@@ -73,6 +65,7 @@
 .modal-wrapper {
   display: table-cell;
   vertical-align: middle;
+  overflow-y: scroll;
 }
 
 .modal-container {
@@ -94,6 +87,15 @@
 .modal-default-button {
   float: right;
 }
+.specs{
+  display: flex;
+  justify-content: space-between;
+}
+
+.row{
+  flex: 2;
+}
+
 
 /*
  * The following styles are auto-applied to elements with
@@ -134,7 +136,7 @@
 .card .image {
   width: 150px;
   height: 150px;
-  margin: 20px;
+  margin: 0px;
   box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.15);
 }
 
