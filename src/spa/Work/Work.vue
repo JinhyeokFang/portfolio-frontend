@@ -30,7 +30,7 @@
   import Navbar from '../../components/Navbar.vue';
   import axios from 'axios';
 
-  const URL = 'http://ec2-18-222-183-3.us-east-2.compute.amazonaws.com/api/list/2';
+  const URL = 'http://ec2-18-222-183-3.us-east-2.compute.amazonaws.com/api/list?division=software';
   export default {
     name: 'Work',
     data() {
@@ -65,16 +65,7 @@
     },
     created() {
       axios.get(URL).then((v) => {
-        this.list = v.data.map((v) => {
-          const contest = ['디지털 콘텐츠 경진대회', '모바일 콘텐츠 경진대회', '선린 해커톤'];
-          const prize = ['대상', '금상'];
-          const tags = ['모바일', '게임', '생활', '영상'];
-          v.groups = [tags[v.contestInfo.type.sub]];
-          if (v.contestInfo.type.main === 2) v.groups.push(tags[0]);
-          v.contestInfo.type.main = contest[v.contestInfo.type.main - 1];
-          v.contestInfo.rate = prize[v.contestInfo.rate - 1];
-          return v;
-        });
+        this.list = v.data;
       }).catch((e) => console.log(e));
     },
     methods: {},

@@ -24,18 +24,18 @@
               <input type="checkbox" id="multi" value="selected_multi" v-model="checkedType">
               <label for="multi">멀티미디어</label>
             </div>
-            <div class="checkbox">
-              <input type="checkbox" id="things" value="selected_things" v-model="checkedType" disabled>
-              <label for="things">IoT</label>
-            </div>
+            <!--<div class="checkbox">-->
+              <!--<input type="checkbox" id="things" value="selected_things" v-model="checkedType" disabled>-->
+              <!--<label for="things">IoT</label>-->
+            <!--</div>-->
             <div class="checkbox">
               <input type="checkbox" id="mobile" value="selected_mobile" v-model="checkedType">
               <label for="mobile">모바일</label>
             </div>
-            <div class="checkbox">
-              <input type="checkbox" id="web" value="selected_web" v-model="checkedType" disabled>
-              <label for="web">웹</label>
-            </div>
+            <!--<div class="checkbox">-->
+              <!--<input type="checkbox" id="web" value="selected_web" v-model="checkedType" disabled>-->
+              <!--<label for="web">웹</label>-->
+            <!--</div>-->
             <div class="checkbox">
               <input type="checkbox" id="ai" value="selected_ai" v-model="checkedType" disabled>
               <label for="ai">AI(인공지능)</label>
