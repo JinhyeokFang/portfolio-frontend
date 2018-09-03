@@ -9,7 +9,7 @@
           </div>
         </div>
         <div class="image">
-          <img src="http://via.placeholder.com/150x150" alt="">
+          <img :src="`http://ec2-18-222-183-3.us-east-2.compute.amazonaws.com/api/image/${id}/1.png`" alt="">
         </div>
       </div>
 
