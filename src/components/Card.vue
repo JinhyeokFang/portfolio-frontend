@@ -1,29 +1,28 @@
 <template>
-  <div class="card">
-    <div class="col">
-      <div class="info">
+  <router-link :to="{name:'detail', params:{id:id}}">
+    <div class="card">
+      <div class="col">
+        <div class="info">
+          <div>
+            <h1 class="title">{{projectName}}</h1>
+            <p class="contest">{{contestInfo.contest}} {{contestInfo.rate}}</p>
+          </div>
+        </div>
+        <div class="image">
+          <img src="http://via.placeholder.com/150x150" alt="">
+        </div>
+      </div>
+
+      <div class="details">
         <div>
-          <h1 class="title">{{projectName}}</h1>
-          <p class="contest">{{contestInfo.contest}} {{contestInfo.rate}}</p>
-          <div class="overview">
-            <p v-html="overview"></p>
+          <tag :groups="groups"></tag>
+          <div class="team">
+            <span v-for="(item, index) in team" :key="index">{{item}}  </span>
           </div>
         </div>
       </div>
-      <div class="image">
-        <img src="http://via.placeholder.com/150x150" alt="">
-      </div>
     </div>
-
-    <div class="details">
-      <div>
-        <tag :groups="groups"></tag>
-        <div class="team">
-          <span v-for="(item, index) in team" :key="index">{{item}}  </span>
-        </div>
-      </div>
-    </div>
-  </div>
+  </router-link>
 
 </template>
 
@@ -32,13 +31,12 @@
 
   export default {
     name: 'work-card',
-    props: ['overview', 'groups', 'team', 'projectName', 'contestInfo', 'qualification'],
+    props: ['id', 'groups', 'team', 'projectName', 'contestInfo', 'qualification'],
     components: {
       'tag': Tag,
     },
     data() {
-      return {
-      };
+      return {};
     },
   };
 

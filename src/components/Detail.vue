@@ -16,9 +16,8 @@
   import * as markdown from '../lib/markdown';
 
 
-  const URL = 'http://ec2-18-222-183-3.us-east-2.compute.amazonaws.com/api/description?id=1';
   export default {
-    name: 'MoreView',
+    name: 'Detail',
     components: {
       'navigation-bar': Navbar,
     },
@@ -34,6 +33,7 @@
       },
     },
     mounted() {
+      const URL = `http://ec2-18-222-183-3.us-east-2.compute.amazonaws.com/api/description?id=${this.$route.params.id}`;
       axios.get(`${URL}`)
         .then((v) => {
           this.markdown = v.data;

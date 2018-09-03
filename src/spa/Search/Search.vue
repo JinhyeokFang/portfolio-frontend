@@ -91,7 +91,7 @@
       </div>
       <section class="result-cards">
         <work-card v-for="(item,index) in list" :projectName="item.projectName" :groups="item.groups" :team="item.developers"
-                   :contestInfo="item.contestInfo" :overview="item.overview" :qualification="item.qualification" :key="index">
+                   :contestInfo="item.contestInfo" :id="item.id" :qualification="item.qualification" :key="index">
         </work-card>
       </section>
     </section>
@@ -101,10 +101,8 @@
   import axios from 'axios';
   import Card from '../../components/Card.vue';
   import Navbar from '../../components/Navbar.vue';
-  import * as markdown from '../../lib/markdown';
 
   const SearchQueryURL = 'http://ec2-18-222-183-3.us-east-2.compute.amazonaws.com/api/list?division=software&';
-  const OverViewLoadURL = 'http://ec2-18-222-183-3.us-east-2.compute.amazonaws.com/api/overview?id=';
 
   export default {
     name: 'Search',
@@ -162,10 +160,7 @@
               dataArrayList.forEach((dataList) => dataList.forEach((cardData) => {
                 if (!this.loadedProject.includes(cardData.projectName)) {
                   this.loadedProject = this.list.map((projectData) => projectData.projectName);
-                  axios.get(`${OverViewLoadURL}${cardData.id}`).then((overView) => {
-                    cardData.overview = markdown.rendering(overView.data);
-                    this.list.push(cardData);
-                  });
+                  this.list.push(cardData);
                 }
               }));
             })

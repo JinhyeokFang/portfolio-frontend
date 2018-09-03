@@ -3,7 +3,7 @@ import Router from 'vue-router';
 import Index from '../spa/Index/Index';
 import Work from '../spa/Work/Work';
 import Search from '../spa/Search/Search';
-import MoreView from '../components/MoreView';
+import Detail from '../components/Detail';
 
 
 import Vuesax from 'vuesax';
@@ -17,23 +17,23 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Index',
+      name: 'index',
       component: Index,
     },
     {
       path: '/work',
-      name: 'Work',
+      name: 'work',
       component: Work,
     },
     {
       path: '/search',
-      name: 'Search',
+      name: 'search',
       component: Search,
     },
     {
-      path: '/detail',
-      name: 'Detail',
-      component: MoreView,
+      path: '/detail/:id',
+      name: 'detail',
+      component: Detail,
     },
   ],
 });
