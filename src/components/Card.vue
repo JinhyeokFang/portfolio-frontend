@@ -112,10 +112,6 @@
     .card .info .title {
       font-size: 1.5rem;
     }
-
-    .overview {
-      display: none;
-    }
   }
 
 </style>

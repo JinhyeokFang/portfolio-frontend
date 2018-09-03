@@ -163,7 +163,7 @@
                 }
               }));
             })
-            .catch((err) => alert(err));
+            .catch((err) => alert('검색에 실패했습니다.'));
         } else {
           alert('검색할 조건을 선택하시거나 입력하여주세요.');
         }
