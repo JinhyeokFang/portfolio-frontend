@@ -53,5 +53,22 @@ export function field(game = false, life = false, application = false, web = fal
   return `field=${query.join('+')}`;
 }
 
+/**
+ *
+ * @param {string} name
+ * @return {string}
+ */
+export function name(name) {
+  return `name=${name}`;
+}
+
+/**
+ *
+ * @param  {string} developer
+ * @return {string}
+ */
+export function developer(developer) {
+  return `developer=${developer}`;
+}
 
 export {server};
