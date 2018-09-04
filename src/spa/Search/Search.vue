@@ -142,7 +142,7 @@
         if (this.max_year >= 2016 && this.max_year <= 2018) options.max = this.max_year;
         if (this.developer) options.developer = this.developer;
         if (this.projectName) options.projectName = this.projectName;
-        if (Object.options.length !== 0) {
+        if (Object.keys(options).length !== 0) {
           axios.get(generator(options))
             .then((dataList) => this.list = dataList)
             .catch(() => alert('검색에 실패했습니다.'));
