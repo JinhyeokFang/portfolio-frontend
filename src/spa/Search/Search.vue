@@ -129,8 +129,10 @@
          * application: boolean,
          * web: boolean,
          * multimedia: boolean,
+         * grand: boolean,
          * gold: boolean,
          * silver: boolean,
+         * bronze: boolean,
          * developer: string,
          * name : string
          */

@@ -73,49 +73,51 @@ function developer(developer) {
 }
 
 /**
- *
- * @param  {Array<number>} rate;
+ * @param {boolean} grand
+ * @param {boolean} gold
+ * @param {boolean} silver
+ * @param {boolean} bronze
  * @return {string}
  */
-function rate(rate) {
-  return `rate=${rate.join('+')}`;
+function rate(grand, gold, silver, bronze) {
+  let count = 0;
+  if (grand) count++;
+  if (gold) count++;
+  if (silver) count++;
+  if (bronze) count++;
+  return `rate=${count}`;
 }
 
 /**
  *
  * @param {{division: string,
- * year: {
- *   min: number,
- *   max: number
- * },
- * type: {
- *   digital: boolean,
- *   mobile: boolean,
- *   sunrinthon: boolean
- * },
- * field: {
- *   game: boolean,
- *   life: boolean,
- *   application: boolean,
- *   web: boolean,
- *   multimedia: boolean
- * },
- * rate: Array<number>,
+ * min: number,
+ * max: number,
+ * digital: boolean,
+ * mobile: boolean,
+ * sunrinthon: boolean,
+ * game: boolean,
+ * life: boolean,
+ * application: boolean,
+ * web: boolean,
+ * multimedia: boolean,
+ * grand: boolean,
+ * gold: boolean,
+ * silver: boolean,
+ * bronze: boolean,
  * developer: string,
  * name : string
  * }} options
  * @return {string}
  */
 export function generator(options) {
-  return `?${Object.entries(options).map((entry) => {
-    if (entry[0] === 'division') return division(entry[0]);
-    else if (entry[0] === 'year') return year(entry[1].min, entry[1].max);
-    else if (entry[0] === 'type') return type(!!entry[1].digitqal, !!entry[1].mobile, !!entry[1].sunrinthon);
-    else if (entry[0] === 'field') return field(!!entry[1].game, !!entry[1].life, !!entry[1].application, !!entry[1].web, !!entry[1].multimedia);
-    else if (entry[0] === 'rate') return rate(entry[1]);
-    else if (entry[0] === 'developer') return developer(entry[1]);
-    else if (entry[0] === 'name') return name(entry[1]);
-  }).join('&')}`;
+  return `?${[division(entry[0]),
+    year(options.min, options.max),
+    type(!!options.digital, !!options.mobile, !!options.sunrinthon),
+    field(!!options.game, !!options.life, !!options.application, !!options.web, !!options.multimedia),
+    rate(options.grand, options.gold, options.silver, options.bronze),
+    developer(options.developer),
+    name(options.name)].join('&')}`;
 }
 
 export {server};
