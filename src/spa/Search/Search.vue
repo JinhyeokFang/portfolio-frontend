@@ -21,20 +21,20 @@
               <label for="life">생활</label>
             </div>
             <div class="checkbox">
-              <input type="checkbox" id="multi" value="selected_multi" v-model="checkedType">
-              <label for="multi">멀티미디어</label>
+              <input type="checkbox" id="multimedia" value="selected_multi" v-model="checkedType">
+              <label for="multimedia">멀티미디어</label>
             </div>
             <!--<div class="checkbox">-->
-              <!--<input type="checkbox" id="things" value="selected_things" v-model="checkedType" disabled>-->
-              <!--<label for="things">IoT</label>-->
+            <!--<input type="checkbox" id="things" value="selected_things" v-model="checkedType" disabled>-->
+            <!--<label for="things">IoT</label>-->
             <!--</div>-->
             <div class="checkbox">
               <input type="checkbox" id="mobile" value="selected_mobile" v-model="checkedType">
               <label for="mobile">모바일</label>
             </div>
             <!--<div class="checkbox">-->
-              <!--<input type="checkbox" id="web" value="selected_web" v-model="checkedType" disabled>-->
-              <!--<label for="web">웹</label>-->
+            <!--<input type="checkbox" id="web" value="selected_web" v-model="checkedType" disabled>-->
+            <!--<label for="web">웹</label>-->
             <!--</div>-->
             <div class="checkbox">
               <input type="checkbox" id="ai" value="selected_ai" v-model="checkedType" disabled>
@@ -57,7 +57,9 @@
               <label for="bronze">동상</label>
             </div>
             <div class="checkbox">
-              <span>연도</span> <input type="number" min="2015" :max="new Date().getFullYear()" id="year" v-model="year" title="year">
+              <span>연도</span> <input type="number" min="2016" :max="new Date().getFullYear()" id="min_year" v-model="min_year"
+                                     title="Min Year"><input type="number" min="2016" :max="new Date().getFullYear()" id="max_year"
+                                                             v-model="max_year" title="Max Year">
             </div>
             <div class="checkbox">
               <span>개발자명</span> <input type="text" id="developer" placeHolder="1명의 이름만 입력하세요" v-model="developer" title="developer">
@@ -81,13 +83,6 @@
           <h1>검색결과</h1>
           <div class="result-bar"></div>
         </div>
-        <div class="result-order-select">
-          <select>
-            <option value="">-</option>
-            <option value="">-</option>
-            <option value="">-</option>
-          </select>
-        </div>
       </div>
       <section class="result-cards">
         <work-card v-for="(item,index) in list" :projectName="item.projectName" :groups="item.groups" :team="item.developers"
@@ -101,8 +96,7 @@
   import axios from 'axios';
   import Card from '../../components/Card.vue';
   import Navbar from '../../components/Navbar.vue';
-
-  const SearchQueryURL = 'http://ec2-18-222-183-3.us-east-2.compute.amazonaws.com/api/list?division=software&';
+  import {generator} from '../../lib/queryBuilder';
 
   export default {
     name: 'Search',
@@ -114,56 +108,46 @@
       return {
         checkedType: [],
         list: [],
-        year: 0,
+        min_year: 2016,
+        max_year: 2018,
         developer: '',
         projectName: '',
-        loadedProject: [],
       };
     },
     methods: {
-      /**
-       * 검색 메소드
-       */
       search() {
-        /**
-         * 기존 데이터 초기화
-         */
         this.list = [];
-        this.loadedProject = [];
         /**
-         * 검색 내용이 있는지 확인
+         * division: string,
+         * min: number,
+         * max: number,
+         * digital: boolean,
+         * mobile: boolean,
+         * sunrinthon: boolean,
+         * game: boolean,
+         * life: boolean,
+         * application: boolean,
+         * web: boolean,
+         * multimedia: boolean,
+         * grand: boolean,
+         * gold: boolean,
+         * silver: boolean,
+         * bronze: boolean,
+         * developer: string,
+         * name : string
          */
-        const queries = this.checkedType.map((checkedType) => {
-          checkedType = checkedType.split('_')[1];
-          if (checkedType === 'game') return 'subType=1';
-          else if (checkedType === 'life') return 'subType=2';
-          else if (checkedType === 'multi') return 'subType=3';
-          // else if (checkedType === 'things') return '';
-          else if (checkedType === 'mobile') return 'type=2';
-          // else if (checkedType === 'web') return '';
-          // else if (checkedType === 'ai') return '';
-          else if (checkedType === 'grand') return 'rate=1';
-          else if (checkedType === 'gold') return 'rate=2';
-          else if (checkedType === 'silver') return 'rate=3';
-          else if (checkedType === 'bronze') return 'rate=4';
-        });
-        if (this.year && this.year >= 2015) queries.push(`date=${this.year}`);
-        if (this.developer) queries.push(`developer=${this.developer}`);
-        if (this.projectName) queries.push(`name=${this.projectName}`);
-        if (queries.length !== 0) {
-          Promise.all(queries.map((query) => new Promise((resolve, reject) => axios.get(`${SearchQueryURL}${query}`)
-            .then((response) => resolve(response.data))
-            .catch(() => reject())
-          )))
-            .then((dataArrayList) => {
-              dataArrayList.forEach((dataList) => dataList.forEach((cardData) => {
-                if (!this.loadedProject.includes(cardData.projectName)) {
-                  this.loadedProject = this.list.map((projectData) => projectData.projectName);
-                  this.list.push(cardData);
-                }
-              }));
-            })
-            .catch((err) => alert('검색에 실패했습니다.'));
+        const options = {
+          division: 'software',
+        };
+        this.checkedType.forEach((checkedType) => options[checkedType.split('_')[1]] = true);
+        if (this.min_year >= 2016 && this.min_year <= 2018) options.min = this.min_year;
+        if (this.max_year >= 2016 && this.max_year <= 2018) options.max = this.max_year;
+        if (this.developer) options.developer = this.developer;
+        if (this.projectName) options.projectName = this.projectName;
+        if (Object.keys(options).length !== 0) {
+          axios.get(generator(options))
+            .then((dataList) => this.list = dataList)
+            .catch(() => alert('검색에 실패했습니다.'));
         } else {
           alert('검색할 조건을 선택하시거나 입력하여주세요.');
         }
