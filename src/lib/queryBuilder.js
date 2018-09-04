@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 const server = 'http://ec2-18-222-183-3.us-east-2.compute.amazonaws.com';
 
 /**
@@ -5,7 +6,7 @@ const server = 'http://ec2-18-222-183-3.us-east-2.compute.amazonaws.com';
  * @param  {string} division
  * @return {string}
  */
-export function division(division = 'software') {
+function division(division = 'software') {
   return `division=${division}`;
 }
 
@@ -15,18 +16,18 @@ export function division(division = 'software') {
  * @param {int} maxYear
  * @return {string}
  */
-export function year(minYear, maxYear) {
+function year(minYear, maxYear) {
   return minYear >= 2016 && maxYear <= 2017 ? `year=${[...new Array(maxYear - minYear + 1)].map((v, i) => minYear + i).join('+')}` : '';
 }
 
 /**
  *
  * @param {boolean} digital
- * @param {boolean} sunrinthon
  * @param {boolean} mobile
+ * @param {boolean} sunrinthon
  * @return {string}
  */
-export function type(digital = false, sunrinthon = false, mobile = false) {
+function type(digital = false, mobile = false, sunrinthon = false) {
   const query = [];
   if (digital) query.push('digital-contents');
   if (sunrinthon) query.push('sunrin-thon');
@@ -43,7 +44,7 @@ export function type(digital = false, sunrinthon = false, mobile = false) {
  * @param {boolean} multimedia
  * @return {string}
  */
-export function field(game = false, life = false, application = false, web = false, multimedia = false) {
+function field(game = false, life = false, application = false, web = false, multimedia = false) {
   const query = [];
   if (game) query.push('game');
   if (life) query.push('life');
@@ -58,7 +59,7 @@ export function field(game = false, life = false, application = false, web = fal
  * @param {string} name
  * @return {string}
  */
-export function name(name) {
+function name(name) {
   return `name=${name}`;
 }
 
@@ -67,8 +68,54 @@ export function name(name) {
  * @param  {string} developer
  * @return {string}
  */
-export function developer(developer) {
+function developer(developer) {
   return `developer=${developer}`;
+}
+
+/**
+ *
+ * @param  {Array<number>} rate;
+ * @return {string}
+ */
+function rate(rate) {
+  return `rate=${rate.join('+')}`;
+}
+
+/**
+ *
+ * @param {{division: string,
+ * year: {
+ *   min: number,
+ *   max: number
+ * },
+ * type: {
+ *   digital: boolean,
+ *   mobile: boolean,
+ *   sunrinthon: boolean
+ * },
+ * field: {
+ *   game: boolean,
+ *   life: boolean,
+ *   application: boolean,
+ *   web: boolean,
+ *   multimedia: boolean
+ * },
+ * rate: Array<number>,
+ * developer: string,
+ * name : string
+ * }} options
+ * @return {string}
+ */
+export function generator(options) {
+  return `?${Object.entries(options).map((entry) => {
+    if (entry[0] === 'division') return division(entry[0]);
+    else if (entry[0] === 'year') return year(entry[1].min, entry[1].max);
+    else if (entry[0] === 'type') return type(!!entry[1].digitqal, !!entry[1].mobile, !!entry[1].sunrinthon);
+    else if (entry[0] === 'field') return field(!!entry[1].game, !!entry[1].life, !!entry[1].application, !!entry[1].web, !!entry[1].multimedia);
+    else if (entry[0] === 'rate') return rate(entry[1]);
+    else if (entry[0] === 'developer') return developer(entry[1]);
+    else if (entry[0] === 'name') return name(entry[1]);
+  }).join('&')}`;
 }
 
 export {server};
