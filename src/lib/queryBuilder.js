@@ -111,13 +111,13 @@ function rate(grand, gold, silver, bronze) {
  * @return {string}
  */
 export function generator(options) {
-  return `?${[division(entry[0]),
-    year(options.min, options.max),
-    type(!!options.digital, !!options.mobile, !!options.sunrinthon),
-    field(!!options.game, !!options.life, !!options.application, !!options.web, !!options.multimedia),
-    rate(options.grand, options.gold, options.silver, options.bronze),
-    developer(options.developer),
-    name(options.name)].join('&')}`;
+  const queries = [];
+  if (options.division) queries.push(division(options.division));
+  if (options.min) queries.push(year(options.min, options.max));
+  if (options.digital || options.mobile || options.sunrinthon) queries.push(type(!!options.digital, !!options.mobile, !!options.sunrinthon));
+  if (options.game || options.life || options.application || options.web || options.multimedia) queries.push(field(!!options.game, !!options.life, !!options.application, !!options.web, !!options.multimedia));
+  if (options.grand || options.gold || options.silver || options.bronze) queries.push(rate(options.grand, options.gold, options.silver, options.bronze));
+  if (options.developer) queries.push(developer(options.developer));
+  if (options.name) queries.push(name(options.name));
+  return `${server}?${queries.join('&')}`;
 }
-
-export {server};

@@ -136,7 +136,9 @@
          * developer: string,
          * name : string
          */
-        const options = {};
+        const options = {
+          division: 'software',
+        };
         this.checkedType.forEach((checkedType) => options[checkedType.split('_')[1]] = true);
         if (this.min_year >= 2016 && this.min_year <= 2018) options.min = this.min_year;
         if (this.max_year >= 2016 && this.max_year <= 2018) options.max = this.max_year;
