@@ -1,7 +1,7 @@
 const server = 'http://ec2-18-222-183-3.us-east-2.compute.amazonaws.com';
 
 /**
- * returns division qu ery
+ * returns division query
  * @param  {string} division
  * @return {string}
  */
@@ -33,5 +33,25 @@ export function type(digital = false, sunrinthon = false, mobile = false) {
   if (mobile) query.push('mobile-contents');
   return `type=${query.join('+')}`;
 }
+
+/**
+ *
+ * @param {boolean} game
+ * @param {boolean} life
+ * @param {boolean} application
+ * @param {boolean} web
+ * @param {boolean} multimedia
+ * @return {string}
+ */
+export function field(game = false, life = false, application = false, web = false, multimedia = false) {
+  const query = [];
+  if (game) query.push('game');
+  if (life) query.push('life');
+  if (application) query.push('application');
+  if (web) query.push('web');
+  if (multimedia) query.push('multimedia');
+  return `field=${query.join('+')}`;
+}
+
 
 export {server};
