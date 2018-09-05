@@ -24,6 +24,7 @@
     </div>
   </router-link>
 
+
 </template>
 
 <script>
@@ -44,6 +45,7 @@
 
 <style>
   .card {
+    color: #444444;
     width: 600px;
     margin: 10px;
     border-radius: 10px;
@@ -57,6 +59,7 @@
   .col {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     margin: 15px 15px 0 15px;
   }
 
@@ -113,5 +116,4 @@
       font-size: 1.5rem;
     }
   }
-
 </style>
