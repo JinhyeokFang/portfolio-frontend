@@ -24,19 +24,32 @@
               <input type="checkbox" id="multimedia" value="selected_multi" v-model="checkedType">
               <label for="multimedia">멀티미디어</label>
             </div>
-            <!--<div class="checkbox">-->
-            <!--<input type="checkbox" id="things" value="selected_things" v-model="checkedType" disabled>-->
-            <!--<label for="things">IoT</label>-->
-            <!--</div>-->
+            <div class="checkbox" onclick="alert('해당 항목은 검색이 불가능합니다')">
+              <input type="checkbox" id="things" value="selected_things" v-model="checkedType" disabled>
+              <label for="things">IoT</label>
+            </div>
+            <div class="checkbox">
+              <input type="checkbox" id="application" value="selected_application" v-model="checkedType" disabled>
+              <label for="application">응용</label>
+            </div>
+
+            <div class="checkbox">
+              <input type="checkbox" id="digital" value="selected_digital" v-model="checkedType">
+              <label for="digital">디지털 컨텐츠 경진대회</label>
+            </div>
             <div class="checkbox">
               <input type="checkbox" id="mobile" value="selected_mobile" v-model="checkedType">
-              <label for="mobile">모바일</label>
+              <label for="mobile">모바일 컨텐츠 경진대회</label>
             </div>
-            <!--<div class="checkbox">-->
-            <!--<input type="checkbox" id="web" value="selected_web" v-model="checkedType" disabled>-->
-            <!--<label for="web">웹</label>-->
-            <!--</div>-->
             <div class="checkbox">
+              <input type="checkbox" id="sunrinthon" value="selected_sunrinthon" v-model="checkedType">
+              <label for="sunrinthon">선린 해커톤</label>
+            </div>
+            <div class="checkbox">
+              <input type="checkbox" id="web" value="selected_web" v-model="checkedType">
+              <label for="web">웹</label>
+            </div>
+            <div class="checkbox" onclick="alert('해당 항목은 검색이 불가능합니다')">
               <input type="checkbox" id="ai" value="selected_ai" v-model="checkedType" disabled>
               <label for="ai">AI(인공지능)</label>
             </div>
@@ -146,7 +159,19 @@
         if (this.projectName) options.projectName = this.projectName;
         if (Object.keys(options).length !== 0) {
           axios.get(generator(options))
-            .then((dataList) => this.list = dataList)
+            .then((res) => {
+              res.data.forEach((v) => {
+                const contest = {
+                  'digital-contents': '디지털 콘텐츠 경진대회',
+                  'mobile-contents': '모바일 콘텐츠 경진대회',
+                  'sunrin-thon': '선린 해커톤',
+                };
+                const prize = ['대상', '금상'];
+                v.contestInfo.type = contest[v.contestInfo.type];
+                v.contestInfo.rate = prize[v.contestInfo.rate - 1];
+                this.list.push(v);
+              });
+            })
             .catch(() => alert('검색에 실패했습니다.'));
         } else {
           alert('검색할 조건을 선택하시거나 입력하여주세요.');

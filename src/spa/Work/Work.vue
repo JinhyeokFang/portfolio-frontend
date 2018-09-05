@@ -35,28 +35,7 @@
     name: 'Work',
     data() {
       return {
-        list: [{
-          'projectName': '',
-          'teamName': '',
-          'developers': [''],
-          'contestInfo': {
-            'type': {
-              'main': '',
-              'sub': '',
-            },
-            'rate': '',
-            'year': 2017,
-          },
-          'qualification': [{
-            'title': '',
-            'contents': [{
-              'title': '',
-              'content': '',
-            }],
-          }],
-          'overview': '',
-          'description': '',
-        }],
+        list: [],
       };
     },
     components: {
@@ -64,9 +43,21 @@
       'navigation-bar': Navbar,
     },
     created() {
-      axios.get(URL).then((v) => {
-        this.list = v.data;
-      }).catch((e) => console.log(e));
+      axios.get(URL)
+        .then((res) => {
+          res.data.forEach((v) => {
+            const contest = {
+              'digital-contents': '디지털 콘텐츠 경진대회',
+              'mobile-contents': '모바일 콘텐츠 경진대회',
+              'sunrin-thon': '선린 해커톤',
+            };
+            const prize = ['대상', '금상'];
+            v.contestInfo.type = contest[v.contestInfo.type];
+            v.contestInfo.rate = prize[v.contestInfo.rate - 1];
+            this.list.push(v);
+          });
+        })
+        .catch(() => alert('검색에 실패했습니다.'));
     },
     methods: {},
   };
