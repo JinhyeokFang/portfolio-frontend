@@ -3,83 +3,87 @@
     <navigation-bar></navigation-bar>
     <section class="main-container">
       <div class="row">
-        <div class="header">
-          <h1>Search</h1>
-          <div class="bar"></div>
-        </div>
         <div class="checkbox-container">
           <div class="header">
-            <h2>카테고리 선택</h2>
+            <h1>Search</h1>
+            <div class="bar"></div>
           </div>
-          <div class="checkbox-row">
-            <div class="checkbox">
-              <input type="checkbox" id="game" value="selected_game" v-model="checkedType">
-              <label for="game">게임</label>
+          <div class="checkbox-col">
+            <div class="options">
+              <h1>분야</h1>
+              <div class="checkbox-row">
+                <div class="checkbox">
+                  <input type="checkbox" id="game" value="selected_game" v-model="checkedType">
+                  <label for="game">게임</label>
+                </div>
+                <div class="checkbox">
+                  <input type="checkbox" id="life" value="selected_life" v-model="checkedType">
+                  <label for="life">생활</label>
+                </div>
+                <div class="checkbox">
+                  <input type="checkbox" id="multimedia" value="selected_multi" v-model="checkedType">
+                  <label for="multimedia">멀티미디어</label>
+                </div>
+              </div>
             </div>
-            <div class="checkbox">
-              <input type="checkbox" id="life" value="selected_life" v-model="checkedType">
-              <label for="life">생활</label>
+            <div class="options">
+              <h1>대회</h1>
+              <div class="checkbox-row">
+                <div class="checkbox">
+                  <input type="checkbox" id="digital" value="selected_digital" v-model="checkedType">
+                  <label for="digital">디지털 컨텐츠 경진대회</label>
+                </div>
+                <div class="checkbox">
+                  <input type="checkbox" id="mobile" value="selected_mobile" v-model="checkedType">
+                  <label for="mobile">모바일 컨텐츠 경진대회</label>
+                </div>
+                <div class="checkbox">
+                  <input type="checkbox" id="sunrinthon" value="selected_sunrinthon" v-model="checkedType">
+                  <label for="sunrinthon">선린 해커톤</label>
+                </div>
+              </div>
             </div>
-            <div class="checkbox">
-              <input type="checkbox" id="multimedia" value="selected_multi" v-model="checkedType">
-              <label for="multimedia">멀티미디어</label>
-            </div>
-            <div class="checkbox">
-              <input type="checkbox" id="application" value="selected_application" v-model="checkedType" disabled>
-              <label for="application">응용</label>
-            </div>
-
-            <div class="checkbox">
-              <input type="checkbox" id="digital" value="selected_digital" v-model="checkedType">
-              <label for="digital">디지털 컨텐츠 경진대회</label>
-            </div>
-            <div class="checkbox">
-              <input type="checkbox" id="mobile" value="selected_mobile" v-model="checkedType">
-              <label for="mobile">모바일 컨텐츠 경진대회</label>
-            </div>
-            <div class="checkbox">
-              <input type="checkbox" id="sunrinthon" value="selected_sunrinthon" v-model="checkedType">
-              <label for="sunrinthon">선린 해커톤</label>
-            </div>
-            <div class="checkbox">
+            <!-- <div class="checkbox">
               <input type="checkbox" id="web" value="selected_web" v-model="checkedType">
               <label for="web">웹</label>
+            </div> -->
+            <div class="options">
+              <h1>상</h1>
+              <div class="checkbox-row">
+                <div class="checkbox">
+                  <input type="checkbox" id="grand" value="selected_grand" v-model="checkedType">
+                  <label for="grand">대상</label>
+                </div>
+                <div class="checkbox">
+                  <input type="checkbox" id="gold" value="selected_gold" v-model="checkedType">
+                  <label for="gold">금상</label>
+                </div>
+                <div class="checkbox">
+                  <input type="checkbox" id="silver" value="selected_silver" v-model="checkedType">
+                  <label for="silver">은상</label>
+                </div>
+                <div class="checkbox">
+                  <input type="checkbox" id="bronze" value="selected_bronze" v-model="checkedType">
+                  <label for="bronze">동상</label>
+                </div>
+              </div>
             </div>
-            <div class="checkbox">
-              <input type="checkbox" id="grand" value="selected_grand" v-model="checkedType">
-              <label for="grand">대상</label>
-            </div>
-            <div class="checkbox">
-              <input type="checkbox" id="gold" value="selected_gold" v-model="checkedType">
-              <label for="gold">금상</label>
-            </div>
-            <div class="checkbox">
-              <input type="checkbox" id="silver" value="selected_silver" v-model="checkedType">
-              <label for="silver">은상</label>
-            </div>
-            <div class="checkbox">
-              <input type="checkbox" id="bronze" value="selected_bronze" v-model="checkedType">
-              <label for="bronze">동상</label>
-            </div>
-            <div class="checkbox">
+
+            <!-- <div>
               <span>연도</span> <input type="number" min="2016" :max="new Date().getFullYear()" id="min_year" v-model="min_year"
                                      title="Min Year"><input type="number" min="2016" :max="new Date().getFullYear()" id="max_year"
                                                              v-model="max_year" title="Max Year">
             </div>
-            <div class="checkbox">
+            <div>
               <span>개발자명</span> <input type="text" id="developer" placeHolder="1명의 이름만 입력하세요" v-model="developer" title="developer">
             </div>
-            <div class="checkbox">
+            <div >
               <span>프로젝트명</span> <input type="text" id="project-name" v-model="projectName" title="project name">
-            </div>
+            </div> -->
           </div>
-        </div>
-        <div class="btn-container">
           <button class="search-btn" @click="search">검색하기</button>
-        </div>
-      </div>
-      <div class="row2">
 
+        </div>
       </div>
       <div class="row projects">
         <!-- <div class="result header">
@@ -104,7 +108,6 @@
     </section>
   </div>
 </template>
-
 <script>
   import axios from 'axios';
   import Card from '../../components/Card.vue';
@@ -183,8 +186,7 @@
 </script>
 <style scoped>
   .main-container {
-    width: 100%;
-    max-width: 80%;
+    width: 80%;
     margin: 0 auto;
     display: flex;
     flex-direction: row;
@@ -197,7 +199,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    padding-left: 20px;
+    width: 100%;
     margin-bottom: 20px;
   }
 
@@ -214,16 +216,15 @@
   .row {
     min-height: 500px;
     max-height: 80vh;
-    overflow-y: scroll;
-    flex: 2;
+    flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    align-items: flex-start;
+    justify-content: center;
+    align-items: center;
   }
 
   .row.projects {
-    flex: 3;
+
   }
 
   .result-cards {
@@ -237,17 +238,28 @@
     margin-bottom: 20px;
   }
 
-  .checkbox-row {
-    width: 450px;
+  .checkbox-col {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-    flex-wrap: wrap;
+  }
+
+  .checkbox-row {
+    display: flex;
+    align-items: center;
   }
 
   .checkbox {
-    margin: 2px;
+  }
+
+  .options {
+    text-align: left;
+    margin: 5px;
+  }
+
+  .options h1 {
+    margin: 15px 0px;
   }
 
   .checkbox input[type="checkbox"] {
@@ -260,7 +272,7 @@
     padding-left: 40px;
     height: 30px;
     line-height: 30px;
-    width: 120px;
+    width: fit-content;
   }
 
   .checkbox label::before,
@@ -305,12 +317,13 @@
   }
 
   .search-btn {
+    margin: 10px 0;
     width: 100%;
     height: 50px;
     background-color: #fff;
     border: 2px solid black;
     font-size: 15px;
-    box-shadow: 0px 10px 20px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 0.1);
   }
 
   /*
