@@ -8,7 +8,11 @@
             <p class="contest">{{contestInfo.type}} {{contestInfo.rate}}</p>
           </div>
         </div>
+        <div class="image">
+          <img src="http://via.placeholder.com/150x150" alt="">
+        </div>
       </div>
+
       <div class="details">
         <div>
           <tag :groups="groups"></tag>
