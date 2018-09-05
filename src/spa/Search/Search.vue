@@ -81,22 +81,30 @@
       <div class="row2">
 
       </div>
-    </section>
-    <section class="result-wrapper">
-      <div class="result-header">
-        <div class="result-title">
-          <h1>검색결과</h1>
-          <div class="result-bar"></div>
-        </div>
+      <div class="row projects">
+        <!-- <div class="result header">
+          <div class="result title">
+            <h1>검색결과</h1>
+            <div class="bar"></div>
+          </div>
+          <div class="result-order-select">
+            <select>
+              <option value="">-</option>
+              <option value="">-</option>
+              <option value="">-</option>
+            </select>
+          </div>
+        </div> -->
+        <section class="result-cards">
+          <work-card v-for="(item,index) in list" :projectName="item.projectName" :groups="item.groups" :team="item.developers"
+                     :contestInfo="item.contestInfo" :id="item.id" :qualification="item.qualification" :key="index">
+          </work-card>
+        </section>
       </div>
-      <section class="result-cards">
-        <work-card v-for="(item,index) in list" :projectName="item.projectName" :groups="item.groups" :team="item.developers"
-                   :contestInfo="item.contestInfo" :id="item.id" :qualification="item.qualification" :key="index">
-        </work-card>
-      </section>
     </section>
   </div>
 </template>
+
 <script>
   import axios from 'axios';
   import Card from '../../components/Card.vue';
@@ -180,8 +188,9 @@
     margin: 0 auto;
     display: flex;
     flex-direction: row;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
   }
 
   .header {
@@ -203,16 +212,22 @@
   }
 
   .row {
-    height: 360px;
-    flex: 1;
+    min-height: 500px;
+    max-height: 80vh;
+    overflow-y: scroll;
+    flex: 2;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: flex-start;
   }
 
-  .row2 {
-    flex: 2;
+  .row.projects {
+    flex: 3;
+  }
+
+  .result-cards {
+    overflow-y: scroll;
   }
 
   .checkbox-container {
@@ -220,11 +235,10 @@
     flex-direction: column;
     align-items: flex-start;
     margin-bottom: 20px;
-
   }
 
   .checkbox-row {
-    width: 330px;
+    width: 450px;
     display: flex;
     flex-direction: row;
     align-items: flex-start;
@@ -234,14 +248,6 @@
 
   .checkbox {
     margin: 2px;
-  }
-
-  .checkbox:nth-child(1) {
-    margin-right: 15px;
-  }
-
-  .checkbox:nth-child(3) {
-    margin-left: -11px;
   }
 
   .checkbox input[type="checkbox"] {
@@ -254,6 +260,7 @@
     padding-left: 40px;
     height: 30px;
     line-height: 30px;
+    width: 120px;
   }
 
   .checkbox label::before,
@@ -298,7 +305,6 @@
   }
 
   .search-btn {
-
     width: 100%;
     height: 50px;
     background-color: #fff;
@@ -315,21 +321,19 @@
     margin: 0 auto;
   }
 
-  .result-header {
-    height: 100px;
+  .result.header {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 50px;
   }
 
-  .result-header > .title > h1 {
-    font-size: 2rem;
+  .result.header > .title > h1 {
+
     text-align: left;
   }
 
-  .result-bar {
+  .result.bar {
     width: 190px;
     height: 10px;
     margin: 20px 0 0 0;
