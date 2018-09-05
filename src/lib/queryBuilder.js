@@ -17,7 +17,7 @@ function division(division = 'software') {
  * @return {string}
  */
 function year(minYear, maxYear) {
-  return minYear >= 2016 && maxYear <= 2017 ? `year=${[...new Array(maxYear - minYear + 1)].map((v, i) => minYear + i).join('+')}` : '';
+  return minYear >= 2016 && maxYear <= 2018? `year=${[...new Array(maxYear - minYear + 1)].map((v, i) => minYear + i).join('+')}` : '';
 }
 
 /**
@@ -119,5 +119,6 @@ export function generator(options) {
   if (options.grand || options.gold || options.silver || options.bronze) queries.push(rate(options.grand, options.gold, options.silver, options.bronze));
   if (options.developer) queries.push(developer(options.developer));
   if (options.name) queries.push(name(options.name));
-  return `${server}?${queries.join('&')}`;
+  console.log(queries);
+  return `${server}/api/list?${queries.join('&')}`;
 }

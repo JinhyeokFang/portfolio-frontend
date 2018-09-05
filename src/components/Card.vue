@@ -5,14 +5,10 @@
         <div class="info">
           <div>
             <h1 class="title">{{projectName}}</h1>
-            <p class="contest">{{contestInfo.contest}} {{contestInfo.rate}}</p>
+            <p class="contest">{{contestInfo.type}} {{contestInfo.rate}}</p>
           </div>
         </div>
-        <div class="image">
-          <img :src="`http://ec2-18-222-183-3.us-east-2.compute.amazonaws.com/api/image/${id}/1.png`" alt="">
-        </div>
       </div>
-
       <div class="details">
         <div>
           <tag :groups="groups"></tag>

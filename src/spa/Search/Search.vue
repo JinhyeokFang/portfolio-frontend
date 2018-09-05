@@ -146,7 +146,7 @@
         if (this.projectName) options.projectName = this.projectName;
         if (Object.keys(options).length !== 0) {
           axios.get(generator(options))
-            .then((dataList) => this.list = dataList)
+            .then((res) => this.list = res.data)
             .catch(() => alert('검색에 실패했습니다.'));
         } else {
           alert('검색할 조건을 선택하시거나 입력하여주세요.');
