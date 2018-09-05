@@ -146,7 +146,19 @@
         if (this.projectName) options.projectName = this.projectName;
         if (Object.keys(options).length !== 0) {
           axios.get(generator(options))
-            .then((res) => this.list = res.data)
+            .then((res) => {
+              res.data.forEach((v) => {
+                const contest = {
+                  'digital-contents': '디지털 콘텐츠 경진대회',
+                  'mobile-contents': '모바일 콘텐츠 경진대회',
+                  'sunrinthon': '선린 해커톤',
+                };
+                const prize = ['대상', '금상'];
+                v.contestInfo.type = contest[v.contestInfo.type];
+                v.contestInfo.rate = prize[v.contestInfo.rate - 1];
+                this.list.push(v);
+              });
+            })
             .catch(() => alert('검색에 실패했습니다.'));
         } else {
           alert('검색할 조건을 선택하시거나 입력하여주세요.');
