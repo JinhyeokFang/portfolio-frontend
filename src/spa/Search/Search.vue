@@ -24,6 +24,10 @@
                   <input type="checkbox" id="multimedia" value="selected_multi" v-model="checkedType">
                   <label for="multimedia">멀티미디어</label>
                 </div>
+                <div class="checkbox">
+                  <input type="checkbox" id="web" value="selected_web" v-model="checkedType">
+                  <label for="web">웹</label>
+                </div>
               </div>
             </div>
             <div class="options">
@@ -43,10 +47,6 @@
                 </div>
               </div>
             </div>
-            <!-- <div class="checkbox">
-              <input type="checkbox" id="web" value="selected_web" v-model="checkedType">
-              <label for="web">웹</label>
-            </div> -->
             <div class="options">
               <h1>상</h1>
               <div class="checkbox-row">
