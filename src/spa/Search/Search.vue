@@ -24,19 +24,32 @@
               <input type="checkbox" id="multimedia" value="selected_multi" v-model="checkedType">
               <label for="multimedia">멀티미디어</label>
             </div>
-            <!--<div class="checkbox">-->
-            <!--<input type="checkbox" id="things" value="selected_things" v-model="checkedType" disabled>-->
-            <!--<label for="things">IoT</label>-->
-            <!--</div>-->
+            <div class="checkbox" onclick="alert('해당 항목은 검색이 불가능합니다')">
+              <input type="checkbox" id="things" value="selected_things" v-model="checkedType" disabled>
+              <label for="things">IoT</label>
+            </div>
+            <div class="checkbox">
+              <input type="checkbox" id="application" value="selected_application" v-model="checkedType" disabled>
+              <label for="application">응용</label>
+            </div>
+
+            <div class="checkbox">
+              <input type="checkbox" id="digital" value="selected_digital" v-model="checkedType">
+              <label for="digital">디지털 컨텐츠 경진대회</label>
+            </div>
             <div class="checkbox">
               <input type="checkbox" id="mobile" value="selected_mobile" v-model="checkedType">
-              <label for="mobile">모바일</label>
+              <label for="mobile">모바일 컨텐츠 경진대회</label>
             </div>
-            <!--<div class="checkbox">-->
-            <!--<input type="checkbox" id="web" value="selected_web" v-model="checkedType" disabled>-->
-            <!--<label for="web">웹</label>-->
-            <!--</div>-->
             <div class="checkbox">
+              <input type="checkbox" id="sunrinthon" value="selected_sunrinthon" v-model="checkedType">
+              <label for="sunrinthon">선린 해커톤</label>
+            </div>
+            <div class="checkbox">
+              <input type="checkbox" id="web" value="selected_web" v-model="checkedType">
+              <label for="web">웹</label>
+            </div>
+            <div class="checkbox" onclick="alert('해당 항목은 검색이 불가능합니다')">
               <input type="checkbox" id="ai" value="selected_ai" v-model="checkedType" disabled>
               <label for="ai">AI(인공지능)</label>
             </div>
