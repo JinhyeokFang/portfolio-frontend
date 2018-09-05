@@ -164,7 +164,7 @@
                 const contest = {
                   'digital-contents': '디지털 콘텐츠 경진대회',
                   'mobile-contents': '모바일 콘텐츠 경진대회',
-                  'sunrinthon': '선린 해커톤',
+                  'sunrin-thon': '선린 해커톤',
                 };
                 const prize = ['대상', '금상'];
                 v.contestInfo.type = contest[v.contestInfo.type];
