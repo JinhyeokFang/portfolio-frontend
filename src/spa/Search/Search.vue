@@ -24,14 +24,16 @@
                   <input type="checkbox" id="multimedia" value="selected_multi" v-model="checkedType">
                   <label for="multimedia">멀티미디어</label>
                 </div>
-                <div class="checkbox">
-                  <input type="checkbox" id="application" value="selected_application" v-model="checkedType">
-                  <label for="web">응용</label>
-                </div>
-                <div class="checkbox">
-                  <input type="checkbox" id="web" value="selected_web" v-model="checkedType">
-                  <label for="web">웹</label>
-                </div>
+              </div>
+
+              <div class="checkbox">
+                <input type="checkbox" id="web" value="selected_web" v-model="checkedType">
+                <label for="web">웹</label>
+              </div>
+
+              <div class="checkbox">
+                <input type="checkbox" id="application" value="selected_application" v-model="checkedType">
+                <label for="application">응용</label>
               </div>
             </div>
             <div class="options">
@@ -86,7 +88,6 @@
             </div> -->
           </div>
           <button class="search-btn" @click="search">검색하기</button>
-
         </div>
       </div>
       <div class="row projects">
@@ -104,7 +105,8 @@
           </div>
         </div> -->
         <section class="result-cards">
-          <work-card v-for="(item,index) in list" :projectName="item.projectName" :groups="item.groups" :team="item.developers"
+          <work-card class="work-card" v-for="(item,index) in list" :projectName="item.projectName" :groups="item.groups"
+                     :team="item.developers"
                      :contestInfo="item.contestInfo" :id="item.id" :qualification="item.qualification" :key="index">
           </work-card>
         </section>
@@ -192,12 +194,9 @@
 <style scoped>
   .main-container {
     width: 100%;
-    max-width: 80%;
-    margin: 0 auto;
-    min-height: 80vh;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     flex-wrap: wrap;
   }
@@ -221,18 +220,15 @@
   }
 
   .row {
-    flex-basis: min-content;
-    height: 100vh;
-    max-height: 80vh;
-    overflow-y: scroll;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    max-width: 90%;
+    min-height: 70vh;
+
   }
 
   .row.projects {
-    flex: 2;
+    min-width: 900px;;
+    height: 100vh;
+    overflow-y: scroll;
   }
 
   .result-cards {
@@ -242,7 +238,7 @@
   .checkbox-container {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    justify-content: space-around;
   }
 
   .checkbox-col {
@@ -259,16 +255,130 @@
     flex-direction: column;
   }
 
-  .checkbox {
-  }
-
   .options {
     text-align: left;
     margin: 5px;
   }
 
   .options h1 {
-    margin: 10px 0;
+    margin: 10px 0px;
     padding-left: 20px;
   }
+
+  .checkbox input[type="checkbox"] {
+    opacity: 0;
+  }
+
+  .checkbox label {
+    position: relative;
+    display: inline-block;
+    padding-left: 40px;
+    margin: 10px;
+    height: 30px;
+    line-height: 30px;
+  }
+
+  .checkbox label::before,
+  .checkbox label::after {
+    position: absolute;
+    content: "";
+    display: inline-block;
+  }
+
+  .checkbox label::before {
+    height: 26px;
+    width: 26px;
+    border: 2px solid;
+    border-radius: 4px;
+    left: 1px;
+    top: 1px;
+  }
+
+  .checkbox label::after {
+    height: 13px;
+    width: 13px;
+    background-color: black;
+    border-radius: 100%;
+    top: 9px;
+    left: 9px;
+  }
+
+  .checkbox input[type="checkbox"] + label::after {
+    content: none;
+  }
+
+  .checkbox input[type="checkbox"]:checked + label::after {
+    content: "";
+  }
+
+  .checkbox input[type="checkbox"]:focus + label::before {
+    outline: rgb(59, 153, 252) auto 5px;
+  }
+
+  .search-btn {
+    width: 100%;
+    height: 50px;
+    background-color: #fff;
+    border: 2px solid black;
+    border-radius: 10px;
+    font-size: 15px;
+    box-shadow: 0px 10px 20px 0 rgba(0, 0, 0, 0.1);
+  }
+
+  /*
+     result 부분
+   */
+  .result.header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .result.header > .title > h1 {
+    text-align: left;
+  }
+
+  .result.bar {
+    width: 190px;
+    height: 10px;
+    margin: 20px 0 0 0;
+    background-color: #000000;
+  }
+
+  .result-order-select select {
+    outline: none;
+    margin-left: 80px;
+    -webkit-appearance: none;
+    appearance: none;
+    font-size: 1.2rem;
+    text-align: center;
+    text-align-last: center; /* chrome */
+    width: 140px;
+    height: 40px;
+    border: 3px solid black;
+    border-radius: 24px;
+    background: transparent url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>") no-repeat;
+    background-position-x: 100%;
+    background-position-y: 5px;
+  }
+
+  /* IE compatibility
+  .result-order-select select::-ms-expand {
+    display: none;
+    background-image: url(data:image/svg+xml;base64,PHN2ZyBmaWxsPSdibGFjaycgaGVpZ2h0PScyNCcgdmlld0JveD0nMCAwIDI
+    0IDI0JyB3aWR0aD0nMjQnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zyc
+    +PHBhdGggZD0nTTcgMTBsNSA1IDUtNXonLz48cGF0aCBkPSdNMCAwaDI0djI0SDB6JyBmaWxsPSdub25lJy8+PC9zdmc+);
+  } */
+
+  .result-cards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  @media screen and (min-width: 768px)and (max-width: 1440px) {
+
+  }
+
 </style>
