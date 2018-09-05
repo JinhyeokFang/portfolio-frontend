@@ -25,6 +25,10 @@
                   <label for="multimedia">멀티미디어</label>
                 </div>
                 <div class="checkbox">
+                  <input type="checkbox" id="application" value="selected_application" v-model="checkedType">
+                  <label for="web">응용</label>
+                </div>
+                <div class="checkbox">
                   <input type="checkbox" id="web" value="selected_web" v-model="checkedType">
                   <label for="web">웹</label>
                 </div>
