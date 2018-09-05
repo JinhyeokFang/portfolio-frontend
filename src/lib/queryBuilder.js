@@ -12,12 +12,12 @@ function division(division = 'software') {
 
 /**
  *
- * @param {int} minYear
+ * @param {any} minYear
  * @param {int} maxYear
  * @return {string}
  */
 function year(minYear, maxYear) {
-  return minYear >= 2016 && maxYear <= 2018? `year=${[...new Array(maxYear - minYear + 1)].map((v, i) => minYear + i).join('+')}` : '';
+  return minYear >= 2016 && maxYear <= 2018? `year=${[...new Array(parseInt(maxYear - minYear )+ 1)].map((v, i) => parseInt(minYear) + i).join('+')}` : '';
 }
 
 /**
