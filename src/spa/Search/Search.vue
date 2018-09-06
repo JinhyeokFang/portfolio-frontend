@@ -138,7 +138,6 @@
     },
     methods: {
       search() {
-        this.list = [];
         /**
          * division: string,
          * min: number,
@@ -169,6 +168,7 @@
         if (Object.keys(options).length !== 0) {
           axios.get(generator(options))
             .then((res) => {
+              this.list = [];
               res.data.forEach((v) => {
                 const contest = {
                   'digital-contents': '디지털 콘텐츠 경진대회',
