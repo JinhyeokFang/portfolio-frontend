@@ -261,7 +261,7 @@
   }
 
   .options h1 {
-    margin: 10px 0px;
+    margin: 10px 0;
     padding-left: 20px;
   }
 

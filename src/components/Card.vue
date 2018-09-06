@@ -99,29 +99,53 @@
   .details .team {
     padding: 5px;
   }
-  @media screen and (max-width: 420px){
-    .image{
+
+  @media screen and (max-width: 420px) {
+    .image {
       display: none;
     }
   }
-  @media screen and (min-width:420px)and (max-width:768px){
-    .card{
-      width:95vw;
+
+  @media screen and (min-width: 420px)and (max-width: 768px) {
+    .card {
+      width: 95vw;
     }
+
     .card .info {
       width: 40vw;
       justify-content: flex-start;
     }
   }
-  @media screen and (min-width:768px)and (max-width:1440px){
-    .card{
-      width:80vw;
-    }
-  }
-  @media screen and (min-width:1440px)and (max-width:2560px){
-    .card{
-      width:38vw;
+
+  @media screen and (min-width: 768px)and (max-width: 1440px) {
+    .card {
+      width: 80vw;
     }
   }
 
+  @media screen and (min-width: 1440px)and (max-width: 2560px) {
+    .card {
+      width: 38vw;
+    }
+  }
+
+  .card {
+    transition: 0.3s ease;
+    animation: scale 0.5s ease;
+
+  }
+
+  .card:hover {
+    transform: scale(1.1);
+    border-color: #236aff;
+  }
+
+  @keyframes scale {
+    0% {
+      transform: scale(0);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
 </style>
