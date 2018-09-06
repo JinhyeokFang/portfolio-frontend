@@ -24,7 +24,6 @@
     </div>
   </router-link>
 
-
 </template>
 
 <script>
@@ -46,7 +45,7 @@
 <style>
   .card {
     color: #444444;
-    width: 600px;
+    width: 320px;
     margin: 10px;
     border-radius: 10px;
     box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.1);
@@ -66,7 +65,7 @@
   .card .info {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+
     margin: 20px 0 20px 20px;
   }
 
@@ -100,20 +99,29 @@
   .details .team {
     padding: 5px;
   }
-
-  @media screen and (max-width: 700px) {
-    .card {
-      width: 420px;
-      height: 250px;
-    }
-
-    .card .info {
-      width: 200px;
-      justify-content: flex-start;
-    }
-
-    .card .info .title {
-      font-size: 1.5rem;
+  @media screen and (max-width: 420px){
+    .image{
+      display: none;
     }
   }
+  @media screen and (min-width:420px)and (max-width:768px){
+    .card{
+      width:95vw;
+    }
+    .card .info {
+      width: 40vw;
+      justify-content: flex-start;
+    }
+  }
+  @media screen and (min-width:768px)and (max-width:1440px){
+    .card{
+      width:80vw;
+    }
+  }
+  @media screen and (min-width:1440px)and (max-width:2560px){
+    .card{
+      width:38vw;
+    }
+  }
+
 </style>
