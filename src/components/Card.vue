@@ -135,11 +135,6 @@
 
   }
 
-  .card:hover {
-    transform: scale(1.1);
-    border-color: #236aff;
-  }
-
   @keyframes scale {
     0% {
       transform: scale(0);

@@ -187,6 +187,9 @@
         }
       },
     },
+    created() {
+      this.search();
+    },
 
   };
 </script>
@@ -226,12 +229,7 @@
   }
 
   .row.projects {
-    min-width: 900px;;
     height: 100vh;
-    overflow-y: scroll;
-  }
-
-  .result-cards {
     overflow-y: scroll;
   }
 
@@ -370,7 +368,6 @@
     0IDI0JyB3aWR0aD0nMjQnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zyc
     +PHBhdGggZD0nTTcgMTBsNSA1IDUtNXonLz48cGF0aCBkPSdNMCAwaDI0djI0SDB6JyBmaWxsPSdub25lJy8+PC9zdmc+);
   } */
-
   .result-cards {
     display: flex;
     flex-direction: column;

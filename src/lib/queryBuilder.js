@@ -119,6 +119,5 @@ export function generator(options) {
   if (options.grand || options.gold || options.silver || options.bronze) queries.push(rate(options.grand, options.gold, options.silver, options.bronze));
   if (options.developer) queries.push(developer(options.developer));
   if (options.name) queries.push(name(options.name));
-  console.log(queries);
   return `${server}/api/list?${queries.join('&')}`;
 }

@@ -7,13 +7,6 @@
           <h1>More View</h1>
           <div class="bar"></div>
         </div>
-        <div class="order-select">
-          <select>
-            <option value="">-</option>
-            <option value="">-</option>
-            <option value="">-</option>
-          </select>
-        </div>
       </div>
       <section class="cards">
         <work-card v-for="(item,index) in list" :projectName="item.projectName" :groups="item.groups" :team="item.developers"
