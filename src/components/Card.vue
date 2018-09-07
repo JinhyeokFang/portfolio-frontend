@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="card" @click="modalChange">
+    <div class="card" @click="modalChange()">
       <div class="col">
         <div class="info">
           <div>
