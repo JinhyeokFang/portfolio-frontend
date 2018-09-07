@@ -1,11 +1,12 @@
 <template>
-  <router-link :to="{name:'detail', params:{id:id}}">
-    <div class="card">
+  <div>
+    <div class="card" @click="modalChange()">
       <div class="col">
         <div class="info">
           <div>
             <h1 class="title">{{projectName}}</h1>
             <p class="contest">{{contestInfo.type}} {{contestInfo.rate}}</p>
+            <p>{{brief}}</p>
           </div>
         </div>
         <div class="image">
@@ -22,22 +23,43 @@
         </div>
       </div>
     </div>
-  </router-link>
-
-
+    <div class="modal" v-if="modal">
+      <div v-html="overview"></div>
+      <button @click="modalChange()">close Modal</button>
+      <router-link :to="{name:'detail', params:{id:id}}">
+        <button>Go detail</button>
+      </router-link>
+    </div>
+  </div>
 </template>
 
 <script>
+  import axios from 'axios';
   import Tag from './Tag.vue';
+  import {server} from '../lib/queryBuilder';
+  import {rendering} from '../lib/markdown';
 
   export default {
     name: 'work-card',
-    props: ['id', 'groups', 'team', 'projectName', 'contestInfo', 'qualification'],
+    props: ['id', 'groups', 'team', 'projectName', 'contestInfo', 'qualification', 'brief'],
     components: {
       'tag': Tag,
     },
     data() {
-      return {};
+      return {
+        overview: '',
+        modal: false,
+      };
+    },
+    methods: {
+      modalChange() {
+        this.modal = !this.modal;
+      },
+    },
+    mounted() {
+      axios.get(`${server}/api//overview?id=${this.id}`).then((res) => {
+        this.overview = rendering(res.data);
+      });
     },
   };
 
@@ -46,7 +68,7 @@
 <style>
   .card {
     color: #444444;
-    width: 600px;
+    width: 320px;
     margin: 10px;
     border-radius: 10px;
     box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.1);
@@ -66,7 +88,7 @@
   .card .info {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+
     margin: 20px 0 20px 20px;
   }
 
@@ -101,19 +123,47 @@
     padding: 5px;
   }
 
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 420px) {
+    .image {
+      display: none;
+    }
+  }
+
+  @media screen and (min-width: 420px)and (max-width: 768px) {
     .card {
-      width: 420px;
-      height: 250px;
+      width: 95vw;
     }
 
     .card .info {
-      width: 200px;
+      width: 40vw;
       justify-content: flex-start;
     }
+  }
 
-    .card .info .title {
-      font-size: 1.5rem;
+  @media screen and (min-width: 768px)and (max-width: 1440px) {
+    .card {
+      width: 80vw;
+    }
+  }
+
+  @media screen and (min-width: 1440px)and (max-width: 2560px) {
+    .card {
+      width: 38vw;
+    }
+  }
+
+  .card {
+    transition: 0.3s ease;
+    animation: scale 0.5s ease;
+
+  }
+
+  @keyframes scale {
+    0% {
+      transform: scale(0);
+    }
+    100% {
+      transform: scale(1);
     }
   }
 </style>

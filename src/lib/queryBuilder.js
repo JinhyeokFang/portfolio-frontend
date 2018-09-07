@@ -17,7 +17,7 @@ function division(division = 'software') {
  * @return {string}
  */
 function year(minYear, maxYear) {
-  return minYear >= 2016 && maxYear <= 2018? `year=${[...new Array(parseInt(maxYear - minYear )+ 1)].map((v, i) => parseInt(minYear) + i).join('+')}` : '';
+  return minYear >= 2016 && maxYear <= 2018 ? `year=${[...new Array(parseInt(maxYear - minYear) + 1)].map((v, i) => parseInt(minYear) + i).join('+')}` : '';
 }
 
 /**
@@ -81,10 +81,10 @@ function developer(developer) {
  */
 function rate(grand, gold, silver, bronze) {
   let count = 0;
-  if (grand) count++;
-  if (gold) count++;
-  if (silver) count++;
-  if (bronze) count++;
+  if (grand) count = 1;
+  if (gold) count = 2;
+  if (silver) count = 3;
+  if (bronze) count = 4;
   return `rate=${count}`;
 }
 
@@ -119,6 +119,7 @@ export function generator(options) {
   if (options.grand || options.gold || options.silver || options.bronze) queries.push(rate(options.grand, options.gold, options.silver, options.bronze));
   if (options.developer) queries.push(developer(options.developer));
   if (options.name) queries.push(name(options.name));
-  console.log(queries);
   return `${server}/api/list?${queries.join('&')}`;
 }
+
+export {server};

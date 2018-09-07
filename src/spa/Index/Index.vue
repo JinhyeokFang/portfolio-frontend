@@ -7,7 +7,6 @@
           <br>소프트웨어과</h1>
         <div class="bar"></div>
         <section class="buttons">
-          <a href="/#/search" class="search btn">Search</a>
           <a href="/#/work" class="more btn">More</a>
         </section>
       </section>

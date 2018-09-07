@@ -51,12 +51,14 @@
     font-family: 'Nanum Gothic', sans-serif !important;
     display: flex;
     justify-content: center;
-    padding: 20px;
-    width: 80%;
-    margin: auto;
+    width: 100%;
     text-align: left;
   }
-
+  article{
+    width:100%;
+    max-width:80%;
+    margin: 0 auto;
+  }
   h1 {
     margin-bottom: 10px !important;
   }
