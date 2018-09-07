@@ -1,11 +1,12 @@
 <template>
-  <router-link :to="{name:'detail', params:{id:id}}">
-    <div class="card">
+  <div>
+    <div class="card" @click="modalChange">
       <div class="col">
         <div class="info">
           <div>
             <h1 class="title">{{projectName}}</h1>
             <p class="contest">{{contestInfo.type}} {{contestInfo.rate}}</p>
+            <p>{{brief}}</p>
           </div>
         </div>
         <div class="image">
@@ -22,21 +23,43 @@
         </div>
       </div>
     </div>
-  </router-link>
-
+    <div class="modal" v-if="modal">
+      <div v-html="overview"></div>
+      <button @click="modalChange()">close Modal</button>
+      <router-link :to="{name:'detail', params:{id:id}}">
+        <button>Go detail</button>
+      </router-link>
+    </div>
+  </div>
 </template>
 
 <script>
+  import axios from 'axios';
   import Tag from './Tag.vue';
+  import {server} from '../lib/queryBuilder';
+  import {rendering} from '../lib/markdown';
 
   export default {
     name: 'work-card',
-    props: ['id', 'groups', 'team', 'projectName', 'contestInfo', 'qualification'],
+    props: ['id', 'groups', 'team', 'projectName', 'contestInfo', 'qualification', 'brief'],
     components: {
       'tag': Tag,
     },
     data() {
-      return {};
+      return {
+        overview: '',
+        modal: false,
+      };
+    },
+    methods: {
+      modalChange() {
+        this.modal = !this.modal;
+      },
+    },
+    mounted() {
+      axios.get(`${server}/api//overview?id=${this.id}`).then((res) => {
+        this.overview = rendering(res.data);
+      });
     },
   };
 

@@ -25,7 +25,6 @@
                   <label for="multimedia">멀티미디어</label>
                 </div>
               </div>
-
               <div class="checkbox">
                 <input type="checkbox" id="web" value="selected_web" v-model="checkedType">
                 <label for="web">웹</label>
@@ -107,7 +106,7 @@
         <section class="result-cards">
           <work-card class="work-card" v-for="(item,index) in list" :projectName="item.projectName" :groups="item.groups"
                      :team="item.developers"
-                     :contestInfo="item.contestInfo" :id="item.id" :qualification="item.qualification" :key="index">
+                     :contestInfo="item.contestInfo" :id="item.id" :qualification="item.qualification" :brief="item.brief" :key="index">
           </work-card>
         </section>
       </div>
@@ -178,6 +177,7 @@
                 const prize = ['대상', '금상'];
                 v.contestInfo.type = contest[v.contestInfo.type];
                 v.contestInfo.rate = prize[v.contestInfo.rate - 1];
+                console.log(v);
                 this.list.push(v);
               });
             })
