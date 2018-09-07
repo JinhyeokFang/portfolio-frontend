@@ -2,7 +2,6 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Index from '../spa/Index/Index';
 import Work from '../spa/Work/Work';
-import Search from '../spa/Search/Search';
 import Detail from '../components/Detail';
 
 
@@ -24,11 +23,6 @@ export default new Router({
       path: '/work',
       name: 'work',
       component: Work,
-    },
-    {
-      path: '/search',
-      name: 'search',
-      component: Search,
     },
     {
       path: '/detail/:id',
