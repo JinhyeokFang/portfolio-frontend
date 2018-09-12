@@ -10,11 +10,7 @@
           </div>
         </div>
         <div class="image">
-<<<<<<< HEAD
           <div class="prize" :class="contestInfo.rate"></div>
-=======
-          <img src="http://via.placeholder.com/150x150" alt="">
->>>>>>> 5c77a3999eb9e84a9b2129ccb2ec7f24a26026c6
         </div>
       </div>
 
@@ -27,7 +23,6 @@
         </div>
       </div>
     </div>
-<<<<<<< HEAD
     <transition name="modal">
       <div class="modal-mask" v-if="modal" >
         <div class="modal-container" v-prevent-parent-scroll>
@@ -43,20 +38,10 @@
         </div>
       </div>
     </transition>
-=======
-    <div class="modal" v-if="modal">
-      <div v-html="overview"></div>
-      <button @click="modalChange()">close Modal</button>
-      <router-link :to="{name:'detail', params:{id:id}}">
-        <button>Go detail</button>
-      </router-link>
-    </div>
->>>>>>> 5c77a3999eb9e84a9b2129ccb2ec7f24a26026c6
   </div>
 </template>
 
 <script>
-<<<<<<< HEAD
 import axios from 'axios';
 import Tag from './Tag.vue';
 import {server} from '../lib/queryBuilder';
@@ -87,41 +72,10 @@ export default {
     },
   },
 };
-=======
-  import axios from 'axios';
-  import Tag from './Tag.vue';
-  import {server} from '../lib/queryBuilder';
-  import {rendering} from '../lib/markdown';
-
-  export default {
-    name: 'work-card',
-    props: ['id', 'groups', 'team', 'projectName', 'contestInfo', 'qualification', 'brief'],
-    components: {
-      'tag': Tag,
-    },
-    data() {
-      return {
-        overview: '',
-        modal: false,
-      };
-    },
-    methods: {
-      modalChange() {
-        this.modal = !this.modal;
-      },
-    },
-    mounted() {
-      axios.get(`${server}/api//overview?id=${this.id}`).then((res) => {
-        this.overview = rendering(res.data);
-      });
-    },
-  };
->>>>>>> 5c77a3999eb9e84a9b2129ccb2ec7f24a26026c6
 
 </script>
 
 <style>
-<<<<<<< HEAD
 
   .prize {
     width: 150px;
@@ -147,8 +101,6 @@ export default {
     background-image: url('../assets/4.png');
   }
 
-=======
->>>>>>> 5c77a3999eb9e84a9b2129ccb2ec7f24a26026c6
   .card {
     color: #444444;
     width: 320px;
@@ -184,17 +136,10 @@ export default {
   }
 
   .card .image {
-<<<<<<< HEAD
     width: 130px;
     height: 130px;
     margin: 20px;
     /* box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.15); */
-=======
-    width: 150px;
-    height: 150px;
-    margin: 20px;
-    box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.15);
->>>>>>> 5c77a3999eb9e84a9b2129ccb2ec7f24a26026c6
   }
 
   .details {
@@ -212,7 +157,6 @@ export default {
   .details .team {
     padding: 5px;
   }
-<<<<<<< HEAD
   /* modal code */
   .modal-mask {
     overflow: hidden;
@@ -264,14 +208,11 @@ export default {
   .close-btn i{
     font-size: 1.2rem;
   }
-=======
->>>>>>> 5c77a3999eb9e84a9b2129ccb2ec7f24a26026c6
 
   @media screen and (max-width: 420px) {
     .image {
       display: none;
     }
-<<<<<<< HEAD
     .modal-container{
       width: 100%;
       min-height: 100vh;
@@ -279,25 +220,16 @@ export default {
       border-radius: 0;
       margin: 0;
     }
-=======
->>>>>>> 5c77a3999eb9e84a9b2129ccb2ec7f24a26026c6
   }
 
   @media screen and (min-width: 420px)and (max-width: 768px) {
     .card {
-<<<<<<< HEAD
       width: 85vw;
     }
-=======
-      width: 95vw;
-    }
-
->>>>>>> 5c77a3999eb9e84a9b2129ccb2ec7f24a26026c6
     .card .info {
       width: 40vw;
       justify-content: flex-start;
     }
-<<<<<<< HEAD
     .modal-container{
       width: 100%;
       min-height: 100vh;
@@ -306,8 +238,6 @@ export default {
     }
 
 
-=======
->>>>>>> 5c77a3999eb9e84a9b2129ccb2ec7f24a26026c6
   }
 
   @media screen and (min-width: 768px)and (max-width: 1440px) {
