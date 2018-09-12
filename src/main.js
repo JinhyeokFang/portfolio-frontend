@@ -3,7 +3,11 @@
 import Vue from 'vue';
 import App from './App';
 import router from './router';
+<<<<<<< HEAD
 Vue.use(require('vue-prevent-parent-scroll'))
+=======
+
+>>>>>>> 5c77a3999eb9e84a9b2129ccb2ec7f24a26026c6
 Vue.config.productionTip = false;
 
 /* eslint-disable no-new */

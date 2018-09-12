@@ -20,6 +20,7 @@
 </template>
 
 <script>
+<<<<<<< HEAD
 import Navbar from '../../components/Navbar.vue';
 
 export default {
@@ -32,6 +33,20 @@ export default {
   },
   methods: {},
 };
+=======
+  import Navbar from '../../components/Navbar.vue';
+
+  export default {
+    name: 'Index',
+    components: {
+      'navigation-bar': Navbar,
+    },
+    data() {
+      return {};
+    },
+    methods: {},
+  };
+>>>>>>> 5c77a3999eb9e84a9b2129ccb2ec7f24a26026c6
 
 </script>
 

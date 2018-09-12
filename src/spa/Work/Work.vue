@@ -1,5 +1,9 @@
 <template>
+<<<<<<< HEAD
   <div class="all">
+=======
+  <div>
+>>>>>>> 5c77a3999eb9e84a9b2129ccb2ec7f24a26026c6
     <navigation-bar></navigation-bar>
     <section class="main-container">
       <div class="row">
@@ -13,6 +17,7 @@
               <h1>분야</h1>
               <div class="checkbox-row">
                 <div class="checkbox">
+<<<<<<< HEAD
                   <input type="checkbox" id="game" value="selected_game" v-model="checkedType" @click="waitSearch">
                   <label for="game">게임</label>
                 </div>
@@ -22,16 +27,35 @@
                 </div>
                 <div class="checkbox">
                   <input type="checkbox" id="multimedia" value="selected_multi" v-model="checkedType" @click="waitSearch">
+=======
+                  <input type="checkbox" id="game" value="selected_game" v-model="checkedType">
+                  <label for="game">게임</label>
+                </div>
+                <div class="checkbox">
+                  <input type="checkbox" id="life" value="selected_life" v-model="checkedType">
+                  <label for="life">생활</label>
+                </div>
+                <div class="checkbox">
+                  <input type="checkbox" id="multimedia" value="selected_multi" v-model="checkedType">
+>>>>>>> 5c77a3999eb9e84a9b2129ccb2ec7f24a26026c6
                   <label for="multimedia">멀티미디어</label>
                 </div>
               </div>
               <div class="checkbox">
+<<<<<<< HEAD
                 <input type="checkbox" id="web" value="selected_web" v-model="checkedType" @click="waitSearch">
+=======
+                <input type="checkbox" id="web" value="selected_web" v-model="checkedType">
+>>>>>>> 5c77a3999eb9e84a9b2129ccb2ec7f24a26026c6
                 <label for="web">웹</label>
               </div>
 
               <div class="checkbox">
+<<<<<<< HEAD
                 <input type="checkbox" id="application" value="selected_application" v-model="checkedType" @click="waitSearch">
+=======
+                <input type="checkbox" id="application" value="selected_application" v-model="checkedType">
+>>>>>>> 5c77a3999eb9e84a9b2129ccb2ec7f24a26026c6
                 <label for="application">응용</label>
               </div>
             </div>
@@ -39,6 +63,7 @@
               <h1>대회</h1>
               <div class="checkbox-row">
                 <div class="checkbox">
+<<<<<<< HEAD
                   <input type="checkbox" id="digital" value="selected_digital" v-model="checkedType" @click="waitSearch">
                   <label for="digital">디지털 컨텐츠 경진대회</label>
                 </div>
@@ -48,6 +73,17 @@
                 </div>
                 <div class="checkbox">
                   <input type="checkbox" id="sunrinthon" value="selected_sunrinthon" v-model="checkedType" @click="waitSearch">
+=======
+                  <input type="checkbox" id="digital" value="selected_digital" v-model="checkedType">
+                  <label for="digital">디지털 컨텐츠 경진대회</label>
+                </div>
+                <div class="checkbox">
+                  <input type="checkbox" id="mobile" value="selected_mobile" v-model="checkedType">
+                  <label for="mobile">모바일 컨텐츠 경진대회</label>
+                </div>
+                <div class="checkbox">
+                  <input type="checkbox" id="sunrinthon" value="selected_sunrinthon" v-model="checkedType">
+>>>>>>> 5c77a3999eb9e84a9b2129ccb2ec7f24a26026c6
                   <label for="sunrinthon">선린 해커톤</label>
                 </div>
               </div>
@@ -56,6 +92,7 @@
               <h1>상</h1>
               <div class="checkbox-row">
                 <div class="checkbox">
+<<<<<<< HEAD
                   <input type="checkbox" id="grand" value="selected_grand" v-model="checkedType" @click="waitSearch">
                   <label for="grand">대상</label>
                 </div>
@@ -69,6 +106,21 @@
                 </div>
                 <div class="checkbox">
                   <input type="checkbox" id="bronze" value="selected_bronze" v-model="checkedType" @click="waitSearch">
+=======
+                  <input type="checkbox" id="grand" value="selected_grand" v-model="checkedType">
+                  <label for="grand">대상</label>
+                </div>
+                <div class="checkbox">
+                  <input type="checkbox" id="gold" value="selected_gold" v-model="checkedType">
+                  <label for="gold">금상</label>
+                </div>
+                <div class="checkbox">
+                  <input type="checkbox" id="silver" value="selected_silver" v-model="checkedType">
+                  <label for="silver">은상</label>
+                </div>
+                <div class="checkbox">
+                  <input type="checkbox" id="bronze" value="selected_bronze" v-model="checkedType">
+>>>>>>> 5c77a3999eb9e84a9b2129ccb2ec7f24a26026c6
                   <label for="bronze">동상</label>
                 </div>
               </div>
@@ -86,7 +138,11 @@
               <span>프로젝트명</span> <input type="text" id="project-name" v-model="projectName" title="project name">
             </div> -->
           </div>
+<<<<<<< HEAD
           <!--<button class="search-btn" @click="search">검색</button>-->
+=======
+          <button class="search-btn" @click="search">검색</button>
+>>>>>>> 5c77a3999eb9e84a9b2129ccb2ec7f24a26026c6
         </div>
       </div>
       <div class="row projects">
@@ -114,6 +170,7 @@
   </div>
 </template>
 <script>
+<<<<<<< HEAD
 import axios from 'axios';
 import Card from '../../components/Card.vue';
 import Navbar from '../../components/Navbar.vue';
@@ -141,6 +198,32 @@ export default {
     },
     search() {
       /**
+=======
+  import axios from 'axios';
+  import Card from '../../components/Card.vue';
+  import Navbar from '../../components/Navbar.vue';
+  import {generator} from '../../lib/queryBuilder';
+
+  export default {
+    name: 'Work',
+    components: {
+      'work-card': Card,
+      'navigation-bar': Navbar,
+    },
+    data() {
+      return {
+        checkedType: [],
+        list: [],
+        min_year: 2016,
+        max_year: 2018,
+        developer: '',
+        projectName: '',
+      };
+    },
+    methods: {
+      search() {
+        /**
+>>>>>>> 5c77a3999eb9e84a9b2129ccb2ec7f24a26026c6
          * division: string,
          * min: number,
          * max: number,
@@ -159,6 +242,7 @@ export default {
          * developer: string,
          * name : string
          */
+<<<<<<< HEAD
       const options = {
         division: 'software',
       };
@@ -169,6 +253,18 @@ export default {
       if (this.projectName) options.projectName = this.projectName;
       if (Object.keys(options).length !== 0) {
         axios.get(generator(options))
+=======
+        const options = {
+          division: 'software',
+        };
+        this.checkedType.forEach((checkedType) => options[checkedType.split('_')[1]] = true);
+        if (this.min_year >= 2016 && this.min_year <= 2018) options.min = this.min_year;
+        if (this.max_year >= 2016 && this.max_year <= 2018) options.max = this.max_year;
+        if (this.developer) options.developer = this.developer;
+        if (this.projectName) options.projectName = this.projectName;
+        if (Object.keys(options).length !== 0) {
+          axios.get(generator(options))
+>>>>>>> 5c77a3999eb9e84a9b2129ccb2ec7f24a26026c6
             .then((res) => {
               this.list = [];
               res.data.forEach((v) => {
@@ -180,10 +276,15 @@ export default {
                 const prize = ['대상', '금상'];
                 v.contestInfo.type = contest[v.contestInfo.type];
                 v.contestInfo.rate = prize[v.contestInfo.rate - 1];
+<<<<<<< HEAD
+=======
+                console.log(v);
+>>>>>>> 5c77a3999eb9e84a9b2129ccb2ec7f24a26026c6
                 this.list.push(v);
               });
             })
             .catch(() => alert('검색에 실패했습니다.'));
+<<<<<<< HEAD
       } else {
         alert('검색할 조건을 선택하시거나 입력하여주세요.');
       }
@@ -200,6 +301,21 @@ export default {
   .all{
     overflow: hidden;
   }
+=======
+        } else {
+          alert('검색할 조건을 선택하시거나 입력하여주세요.');
+        }
+      },
+    },
+    created() {
+      this.search();
+    },
+
+  };
+</script>
+
+<style scoped>
+>>>>>>> 5c77a3999eb9e84a9b2129ccb2ec7f24a26026c6
   .main-container {
     width: 100%;
     display: flex;
@@ -230,6 +346,15 @@ export default {
   .row {
     max-width: 90%;
     min-height: 70vh;
+<<<<<<< HEAD
+=======
+
+  }
+
+  .row.projects {
+    height: 100vh;
+    overflow-y: scroll;
+>>>>>>> 5c77a3999eb9e84a9b2129ccb2ec7f24a26026c6
   }
 
   .checkbox-container {
@@ -371,9 +496,12 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
+<<<<<<< HEAD
     overflow-y: scroll;
     height: 80vh;
 
+=======
+>>>>>>> 5c77a3999eb9e84a9b2129ccb2ec7f24a26026c6
   }
 
   @media screen and (min-width: 768px)and (max-width: 1440px) {
