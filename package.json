@@ -15,10 +15,7 @@
     "github-markdown-css": "^2.10.0",
     "showdown": "^1.8.6",
     "vue": "^2.5.16",
-<<<<<<< HEAD
     "vue-prevent-parent-scroll": "^1.0.5",
-=======
->>>>>>> 5c77a3999eb9e84a9b2129ccb2ec7f24a26026c6
     "vue-router": "^3.0.1",
     "vuesax": "^3.2.24"
   },
@@ -36,17 +33,6 @@
     "chalk": "^2.4.1",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.0",
-<<<<<<< HEAD
-    "eslint": "5.5.0",
-    "eslint-config-google": "0.10.0",
-    "eslint-config-standard": "12.0.0",
-    "eslint-friendly-formatter": "4.0.1",
-    "eslint-loader": "2.1.0",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-node": "7.0.1",
-    "eslint-plugin-promise": "4.0.1",
-    "eslint-plugin-standard": "4.0.0",
-=======
     "eslint": "^4.19.1",
     "eslint-config-google": "^0.9.1",
     "eslint-config-standard": "^10.2.1",
@@ -56,7 +42,6 @@
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-promise": "^3.4.0",
     "eslint-plugin-standard": "^3.0.1",
->>>>>>> 5c77a3999eb9e84a9b2129ccb2ec7f24a26026c6
     "eslint-plugin-vue": "^4.0.0",
     "extract-text-webpack-plugin": "^3.0.0",
     "file-loader": "^1.1.4",

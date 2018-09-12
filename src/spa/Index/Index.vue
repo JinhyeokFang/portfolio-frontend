@@ -20,22 +20,21 @@
 </template>
 
 <script>
-import Navbar from '../../components/Navbar.vue';
+  import Navbar from '../../components/Navbar.vue';
 
-export default {
-  name: 'Index',
-  components: {
-    'navigation-bar': Navbar,
-  },
-  data() {
-    return {};
-  },
-  methods: {},
-};
+  export default {
+    name: 'Index',
+    components: {
+      'navigation-bar': Navbar,
+    },
+    data() {
+      return {};
+    },
+    methods: {},
+  };
 
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   * {
     color: #000000;
