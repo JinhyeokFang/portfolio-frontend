@@ -24,16 +24,25 @@
       </div>
     </div>
     <transition name="modal">
-      <div class="modal-mask" v-if="modal" >
+      <div class="modal-mask" v-if="modal">
         <div class="modal-container" v-prevent-parent-scroll>
           <div class="modal-header">
-            <button class="close-btn" @click="modalChange()"><i class="material-icons">close</i></button>            
+            <div class="image">
+              <div class="prize" :class="contestInfo.rate"></div>
+            </div>
+            <h1 class="title">{{projectName}}</h1>
+            <p class="contest">{{contestInfo.type}} {{contestInfo.rate}} 수상</p>
+            <tag :groups="groups"></tag>
+            <div class="team">
+              <span v-for="(item, index) in team" :key="index">{{item}}</span>의 작품
+            </div>
+            <button class="close-btn" @click="modalChange()"><i class="material-icons">close</i></button>
           </div>
           <div class="modal-body">
             <div v-html="overview"></div>
             <router-link :to="{name:'detail', params:{id:id}}">
               <button>Go detail</button>
-            </router-link> 
+            </router-link>
           </div>
         </div>
       </div>
@@ -42,36 +51,36 @@
 </template>
 
 <script>
-import axios from 'axios';
-import Tag from './Tag.vue';
-import {server} from '../lib/queryBuilder';
-import {rendering} from '../lib/markdown';
+  import axios from 'axios';
+  import Tag from './Tag.vue';
+  import {server} from '../lib/queryBuilder';
+  import {rendering} from '../lib/markdown';
 
-export default {
-  name: 'work-card',
-  props: ['id', 'groups', 'team', 'projectName', 'contestInfo', 'qualification', 'brief'],
-  components: {
-    'tag': Tag,
-  },
-  data() {
-    return {
-      overview: '',
-      modal: false,
-      clicked: false,
-    };
-  },
-  methods: {
-    modalChange() {
-      this.modal = !this.modal;
-      if (!this.clicked) {
-        axios.get(`${server}/api//overview?id=${this.id}`).then((res) => {
-          this.overview = rendering(res.data);
-        });
-        this.clicked = true;
-      }
+  export default {
+    name: 'work-card',
+    props: ['id', 'groups', 'team', 'projectName', 'contestInfo', 'qualification', 'brief'],
+    components: {
+      'tag': Tag,
     },
-  },
-};
+    data() {
+      return {
+        overview: '',
+        modal: false,
+        clicked: false,
+      };
+    },
+    methods: {
+      modalChange() {
+        this.modal = !this.modal;
+        if (!this.clicked) {
+          axios.get(`${server}/api//overview?id=${this.id}`).then((res) => {
+            this.overview = rendering(res.data);
+          });
+          this.clicked = true;
+        }
+      },
+    },
+  };
 
 </script>
 
@@ -157,6 +166,7 @@ export default {
   .details .team {
     padding: 5px;
   }
+
   /* modal code */
   .modal-mask {
     overflow: hidden;
@@ -164,12 +174,13 @@ export default {
     z-index: 9998;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, .5);
     transition: opacity .3s ease;
   }
+
   .modal-container {
     width: 80vw;
     min-height: 80vh;
@@ -183,14 +194,15 @@ export default {
     border-radius: 5px;
 
   }
-  .modal-header{
+
+  .modal-header {
     display: flex;
     justify-content: flex-end;
   }
+
   .modal-enter {
     opacity: 0;
   }
-
 
   .modal-leave-active {
     opacity: 0;
@@ -201,11 +213,13 @@ export default {
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
   }
-  .close-btn{
+
+  .close-btn {
     background: none;
     border: none;
   }
-  .close-btn i{
+
+  .close-btn i {
     font-size: 1.2rem;
   }
 
@@ -213,7 +227,8 @@ export default {
     .image {
       display: none;
     }
-    .modal-container{
+
+    .modal-container {
       width: 100%;
       min-height: 100vh;
       overflow-y: auto;
@@ -226,17 +241,18 @@ export default {
     .card {
       width: 85vw;
     }
+
     .card .info {
       width: 40vw;
       justify-content: flex-start;
     }
-    .modal-container{
+
+    .modal-container {
       width: 100%;
       min-height: 100vh;
       border-radius: 0;
       margin: 0;
     }
-
 
   }
 

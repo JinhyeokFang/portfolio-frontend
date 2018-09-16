@@ -114,33 +114,33 @@
   </div>
 </template>
 <script>
-import axios from 'axios';
-import Card from '../../components/Card.vue';
-import Navbar from '../../components/Navbar.vue';
-import {generator} from '../../lib/queryBuilder';
+  import axios from 'axios';
+  import Card from '../../components/Card.vue';
+  import Navbar from '../../components/Navbar.vue';
+  import {generator} from '../../lib/queryBuilder';
 
-export default {
-  name: 'Work',
-  components: {
-    'work-card': Card,
-    'navigation-bar': Navbar,
-  },
-  data() {
-    return {
-      checkedType: [],
-      list: [],
-      min_year: 2016,
-      max_year: 2018,
-      developer: '',
-      projectName: '',
-    };
-  },
-  methods: {
-    waitSearch() {
-      setTimeout(() => this.search(), 1);
+  export default {
+    name: 'Work',
+    components: {
+      'work-card': Card,
+      'navigation-bar': Navbar,
     },
-    search() {
-      /**
+    data() {
+      return {
+        checkedType: [],
+        list: [],
+        min_year: 2016,
+        max_year: 2018,
+        developer: '',
+        projectName: '',
+      };
+    },
+    methods: {
+      waitSearch() {
+        setTimeout(() => this.search(), 1);
+      },
+      search() {
+        /**
          * division: string,
          * min: number,
          * max: number,
@@ -159,16 +159,16 @@ export default {
          * developer: string,
          * name : string
          */
-      const options = {
-        division: 'software',
-      };
-      this.checkedType.forEach((checkedType) => options[checkedType.split('_')[1]] = true);
-      if (this.min_year >= 2016 && this.min_year <= 2018) options.min = this.min_year;
-      if (this.max_year >= 2016 && this.max_year <= 2018) options.max = this.max_year;
-      if (this.developer) options.developer = this.developer;
-      if (this.projectName) options.projectName = this.projectName;
-      if (Object.keys(options).length !== 0) {
-        axios.get(generator(options))
+        const options = {
+          division: 'software',
+        };
+        this.checkedType.forEach((checkedType) => options[checkedType.split('_')[1]] = true);
+        if (this.min_year >= 2016 && this.min_year <= 2018) options.min = this.min_year;
+        if (this.max_year >= 2016 && this.max_year <= 2018) options.max = this.max_year;
+        if (this.developer) options.developer = this.developer;
+        if (this.projectName) options.projectName = this.projectName;
+        if (Object.keys(options).length !== 0) {
+          axios.get(generator(options))
             .then((res) => {
               this.list = [];
               res.data.forEach((v) => {
@@ -184,22 +184,23 @@ export default {
               });
             })
             .catch(() => alert('검색에 실패했습니다.'));
-      } else {
-        alert('검색할 조건을 선택하시거나 입력하여주세요.');
-      }
+        } else {
+          alert('검색할 조건을 선택하시거나 입력하여주세요.');
+        }
+      },
     },
-  },
-  created() {
-    this.search();
-  },
+    created() {
+      this.search();
+    },
 
-};
+  };
 </script>
 
 <style scoped>
-  .all{
+  .all {
     overflow: hidden;
   }
+
   .main-container {
     width: 100%;
     display: flex;

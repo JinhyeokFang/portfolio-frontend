@@ -54,11 +54,13 @@ export default {
     width: 100%;
     text-align: left;
   }
-  article{
-    width:100%;
-    max-width:80%;
+
+  article {
+    width: 100%;
+    max-width: 80%;
     margin: 0 auto;
   }
+
   h1 {
     margin-bottom: 10px !important;
   }

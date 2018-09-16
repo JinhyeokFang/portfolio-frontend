@@ -7,10 +7,10 @@
 </template>
 
 <script>
-export default {
-  name: 'tag',
-  props: ['groups'],
-};
+  export default {
+    name: 'tag',
+    props: ['groups'],
+  };
 </script>
 
 <style>
@@ -18,6 +18,7 @@ export default {
     display: flex;
     margin-right: 10px;
   }
+
   .tag {
     width: 60px;
     height: 30px;
