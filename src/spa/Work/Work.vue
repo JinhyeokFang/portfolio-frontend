@@ -180,6 +180,11 @@
                 const prize = ['대상', '금상'];
                 v.contestInfo.type = contest[v.contestInfo.type];
                 v.contestInfo.rate = prize[v.contestInfo.rate - 1];
+                if (v.contestInfo.field === 'game') v.contestInfo.field = '게임';
+                if (v.contestInfo.field === 'life') v.contestInfo.field = '생활';
+                if (v.contestInfo.field === 'web') v.contestInfo.field = '웹';
+                if (v.contestInfo.field === 'application') v.contestInfo.field = '응용';
+                if (v.contestInfo.field === 'multimedia') v.contestInfo.field = '멀티미디어';
                 this.list.push(v);
               });
             })
