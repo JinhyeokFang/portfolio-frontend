@@ -32,7 +32,7 @@
             </div>
             <h1 class="title">{{projectName}}</h1>
             <p class="contest">{{contestInfo.type}} {{contestInfo.rate}} 수상</p>
-            <tag :groups="groups"></tag>
+            <tag :groups="contestInfo.type === '모바일 콘텐츠 경진대회' ? ['모바일',contestInfo.field]:[contestInfo.field]"></tag>
             <div class="team">
               <span v-for="(item, index) in team" :key="index">{{item}}</span>의 작품
             </div>
