@@ -13,7 +13,6 @@
           <div class="prize" :class="contestInfo.rate"></div>
         </div>
       </div>
-
       <div class="details">
         <div>
           <tag :groups="groups"></tag>
@@ -25,24 +24,34 @@
     </div>
     <transition name="modal">
       <div class="modal-mask" v-if="modal">
-        <div class="modal-container" v-prevent-parent-scroll>
+        <div class="modal-container" >
+          <div class="btn">
+            <button class="close-btn" @click="modalChange()"><i class="material-icons">close</i></button>
+          </div>
           <div class="modal-header">
             <div class="image">
               <div class="prize" :class="contestInfo.rate"></div>
             </div>
-            <h1 class="title">{{projectName}}</h1>
-            <p class="contest">{{contestInfo.type}} {{contestInfo.rate}} 수상</p>
-            <tag :groups="contestInfo.type === '모바일 콘텐츠 경진대회' ? ['모바일',contestInfo.field]:[contestInfo.field]"></tag>
-            <div class="team">
-              <span v-for="(item, index) in team" :key="index">{{item}}</span>의 작품
+            <div class="header-details">
+              <div class="modal-col">
+                <h1 class="title">{{projectName}}</h1>
+                <p class="contest">{{contestInfo.type}} {{contestInfo.rate}} 수상</p>
+              </div>
+              <div class="modal-col row">
+                <tag :groups="contestInfo.type === '모바일 콘텐츠 경진대회' ? ['모바일',contestInfo.field]:[contestInfo.field]"></tag>
+                <div class="team">
+                  <span v-for="(item, index) in team" :key="index">{{item}}</span>의 작품
+                </div>
+              </div>
             </div>
-            <button class="close-btn" @click="modalChange()"><i class="material-icons">close</i></button>
           </div>
           <div class="modal-body">
-            <div v-html="overview"></div>
-            <router-link :to="{name:'detail', params:{id:id}}">
-              <button>Go detail</button>
-            </router-link>
+            <div class="overview" v-html="overview"></div>
+            <div class="btn">
+              <router-link :to="{name:'detail', params:{id:id}}">
+                <button class="detail-btn">자세히 보기</button>
+              </router-link>
+            </div>
           </div>
         </div>
       </div>
@@ -96,17 +105,14 @@
   }
 
   .금상 {
-
     background-image: url('../assets/2.png');
   }
 
   .은상 {
-
     background-image: url('../assets/3.png');
   }
 
   .동상 {
-
     background-image: url('../assets/4.png');
   }
 
@@ -132,7 +138,6 @@
   .card .info {
     display: flex;
     flex-direction: column;
-
     margin: 20px 0 20px 20px;
   }
 
@@ -148,7 +153,6 @@
     width: 130px;
     height: 130px;
     margin: 20px;
-    /* box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.15); */
   }
 
   .details {
@@ -169,7 +173,7 @@
 
   /* modal code */
   .modal-mask {
-    overflow: hidden;
+    /* overflow: hidden; */
     position: fixed;
     z-index: 9998;
     top: 50%;
@@ -179,27 +183,56 @@
     height: 100%;
     background-color: rgba(0, 0, 0, .5);
     transition: opacity .3s ease;
+    overflow: auto;
+
   }
 
   .modal-container {
-    width: 80vw;
-    min-height: 80vh;
+    width: 50vw;
+    min-height: 75vh;
     margin: 100px auto;
-    padding: 20px 30px;
+    padding: 20px 50px;
     background-color: #fff;
     box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
     transition: all .3s ease;
     display: flex;
     flex-direction: column;
-    border-radius: 5px;
-
+    border-radius: 10px;
   }
-
   .modal-header {
+    max-width: 75vw;
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
   }
+  .modal-body{
+    margin-top: 20px;
+  }
+  .modal-header .image{
+    margin-right: 50px;
+  }
+  .header-details{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+  }
+  .modal-col{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .modal-col.row{
+    flex-direction: row;
+    align-items: center;
 
+  }
+  .overview{
+    text-align: left;
+    font-size: 1.2rem;
+  }
+  .modal-col .title{
+    font-size: 2rem;
+  }
   .modal-enter {
     opacity: 0;
   }
@@ -213,47 +246,60 @@
     -webkit-transform: scale(1.1);
     transform: scale(1.1);
   }
-
+  .btn{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .btn:nth-child(2){
+    margin-top: 30px;
+  }
   .close-btn {
+    right: 0;
+    width: 30px;
+    height: 30px;
     background: none;
     border: none;
   }
-
   .close-btn i {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
+  }
+  .detail-btn{
+    font-weight: bold;
+    font-size: 1.3rem;
+    color: #fff;
+    width: 180px;
+    height: 64px;
+    border-radius: 32px;
+    background-color: #000000;
+    box-shadow: 0px 10px 20px 0 rgba(0, 0, 0, 0.2);
   }
 
-  @media screen and (max-width: 420px) {
+  @media screen and (max-width: 1200px){
     .image {
       display: none;
     }
-
     .modal-container {
       width: 100%;
       min-height: 100vh;
-      overflow-y: auto;
       border-radius: 0;
       margin: 0;
     }
   }
-
   @media screen and (min-width: 420px)and (max-width: 768px) {
     .card {
       width: 85vw;
     }
-
     .card .info {
       width: 40vw;
       justify-content: flex-start;
     }
-
     .modal-container {
       width: 100%;
       min-height: 100vh;
       border-radius: 0;
       margin: 0;
     }
-
   }
 
   @media screen and (min-width: 768px)and (max-width: 1440px) {

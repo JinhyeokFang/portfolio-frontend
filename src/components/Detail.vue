@@ -2,7 +2,6 @@
   <section>
     <navigation-bar></navigation-bar>
     <div class="container">
-
       <article class="markdown-body">
         <div v-html="html"></div>
       </article>

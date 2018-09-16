@@ -11,11 +11,11 @@
         </section>
       </section>
     </section>
-    <section class="bottom">
+    <!-- <section class="bottom">
       <section class="alert">
         <p>Chrome, Firefox 등의 브라우저를 이용해주세요</p>
       </section>
-    </section>
+    </section> -->
   </section>
 </template>
 
@@ -132,17 +132,20 @@
 
   @media screen and (max-width: 1024px) {
     .title {
-      font-size: 3rem;
+      font-size: 2.5rem;
+      text-align: center;
     }
 
     .main-container {
+      max-width: 100%;
       justify-content: center;
       align-items: center;
-      background: none;
+      background-size: contain;
+      background-position: center;
     }
 
     .bar {
-      width: 80%;
+      width: 120px;
       margin: 50px auto;
     }
 
