@@ -5951,10 +5951,6 @@ vue-loader@^13.3.0:
     vue-style-loader "^3.0.0"
     vue-template-es2015-compiler "^1.6.0"
 
-vue-prevent-parent-scroll@^1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/vue-prevent-parent-scroll/-/vue-prevent-parent-scroll-1.0.5.tgz#1ba769b8770f303601c3988853e5871fd2fcf122"
-
 vue-router@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-3.0.1.tgz#d9b05ad9c7420ba0f626d6500d693e60092cc1e9"

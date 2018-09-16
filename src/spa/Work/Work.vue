@@ -193,9 +193,18 @@
           alert('검색할 조건을 선택하시거나 입력하여주세요.');
         }
       },
+      pv_sc() {
+
+      },
     },
     created() {
       this.search();
+    },
+    mounted() {
+
+    },
+    destroyed() {
+      document.removeEventListener();
     },
 
   };
@@ -237,9 +246,11 @@
     max-width: 90%;
     min-height: 70vh;
   }
-  .row.check{
+
+  .row.check {
     display: flex;
   }
+
   .checkbox-container {
     display: flex;
     flex-direction: column;
