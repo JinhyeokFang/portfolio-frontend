@@ -40,7 +40,7 @@
               <div class="modal-col row">
                 <tag :groups="contestInfo.type === '모바일 콘텐츠 경진대회' ? ['모바일',contestInfo.field]:[contestInfo.field]"></tag>
                 <div class="team">
-                  <span v-for="(item, index) in team" :key="index">{{item}}</span>의 작품
+                  {{team.toString()}}의 작품
                 </div>
               </div>
             </div>
