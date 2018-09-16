@@ -27,6 +27,15 @@
       <div class="modal-mask" v-if="modal">
         <div class="modal-container" v-prevent-parent-scroll>
           <div class="modal-header">
+            <div class="image">
+              <div class="prize" :class="contestInfo.rate"></div>
+            </div>
+            <h1 class="title">{{projectName}}</h1>
+            <p class="contest">{{contestInfo.type}} {{contestInfo.rate}} 수상</p>
+            <tag :groups="groups"></tag>
+            <div class="team">
+              <span v-for="(item, index) in team" :key="index">{{item}}</span>의 작품
+            </div>
             <button class="close-btn" @click="modalChange()"><i class="material-icons">close</i></button>
           </div>
           <div class="modal-body">
