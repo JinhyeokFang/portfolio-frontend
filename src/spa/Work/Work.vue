@@ -2,7 +2,7 @@
   <div class="all">
     <navigation-bar></navigation-bar>
     <section class="main-container">
-      <div class="row">
+      <div class="row check">
         <div class="checkbox-container">
           <div class="header">
             <h1>Search</h1>
@@ -231,11 +231,14 @@ export default {
     max-width: 90%;
     min-height: 70vh;
   }
-
+  .row.check{
+    display: flex;
+  }
   .checkbox-container {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
+
   }
 
   .checkbox-col {

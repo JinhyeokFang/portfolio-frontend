@@ -11,7 +11,6 @@
 </template>
 
 <script>
-<<<<<<< HEAD
 import axios from 'axios';
 import Navbar from './Navbar.vue';
 import * as markdown from '../lib/markdown';
@@ -36,44 +35,13 @@ export default {
   mounted() {
     const URL = `http://ec2-18-222-183-3.us-east-2.compute.amazonaws.com/api/description?id=${this.$route.params.id}`;
     axios.get(`${URL}`)
-=======
-  import axios from 'axios';
-  import Navbar from './Navbar.vue';
-  import * as markdown from '../lib/markdown';
-
-
-  export default {
-    name: 'Detail',
-    components: {
-      'navigation-bar': Navbar,
-    },
-    data() {
-      return {
-        markdown: '',
-        html: '',
-      };
-    },
-    methods: {
-      markdownChanged() {
-        this.html = markdown.rendering(this.markdown);
-      },
-    },
-    mounted() {
-      const URL = `http://ec2-18-222-183-3.us-east-2.compute.amazonaws.com/api/description?id=${this.$route.params.id}`;
-      axios.get(`${URL}`)
->>>>>>> 5c77a3999eb9e84a9b2129ccb2ec7f24a26026c6
         .then((v) => {
           this.markdown = v.data;
           this.markdownChanged();
         })
         .catch((err) => console.log(err));
-<<<<<<< HEAD
   },
 };
-=======
-    },
-  };
->>>>>>> 5c77a3999eb9e84a9b2129ccb2ec7f24a26026c6
 </script>
 
 <style scoped>
