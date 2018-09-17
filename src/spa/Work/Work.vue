@@ -120,6 +120,7 @@
         developer: '',
         projectName: '',
         loadedPage: 1,
+        total: 0,
         /** search options
          * division: string,
          * min: number,
@@ -160,7 +161,8 @@
           axios.get(generator(options))
             .then((res) => {
               this.list = [];
-              res.data.forEach((v) => {
+              this.total = res.data.total;
+              res.data.list.forEach((v) => {
                 const contest = {
                   'digital-contents': '디지털 콘텐츠 경진대회',
                   'mobile-contents': '모바일 콘텐츠 경진대회',
@@ -183,27 +185,29 @@
         }
       },
       moreLoad() {
-        const options = this.options.extend({page: ++this.loadedPage});
-        axios.get(generator(options))
-          .then((res) => {
-            res.data.forEach((v) => {
-              const contest = {
-                'digital-contents': '디지털 콘텐츠 경진대회',
-                'mobile-contents': '모바일 콘텐츠 경진대회',
-                'sunrin-thon': '선린 해커톤',
-              };
-              const prize = ['대상', '금상'];
-              v.contestInfo.type = contest[v.contestInfo.type];
-              v.contestInfo.rate = prize[v.contestInfo.rate - 1];
-              if (v.contestInfo.field === 'game') v.contestInfo.field = '게임';
-              if (v.contestInfo.field === 'life') v.contestInfo.field = '생활';
-              if (v.contestInfo.field === 'web') v.contestInfo.field = '웹';
-              if (v.contestInfo.field === 'application') v.contestInfo.field = '응용';
-              if (v.contestInfo.field === 'multimedia') v.contestInfo.field = '멀티미디어';
-              this.list.push(v);
-            });
-          })
-          .catch(() => alert('페이지로드에 실패했습니다.'));
+        if (this.loadedPage * 10 < this.total) {
+          const options = this.options.extend({page: ++this.loadedPage});
+          axios.get(generator(options))
+            .then((res) => {
+              res.data.list.forEach((v) => {
+                const contest = {
+                  'digital-contents': '디지털 콘텐츠 경진대회',
+                  'mobile-contents': '모바일 콘텐츠 경진대회',
+                  'sunrin-thon': '선린 해커톤',
+                };
+                const prize = ['대상', '금상'];
+                v.contestInfo.type = contest[v.contestInfo.type];
+                v.contestInfo.rate = prize[v.contestInfo.rate - 1];
+                if (v.contestInfo.field === 'game') v.contestInfo.field = '게임';
+                if (v.contestInfo.field === 'life') v.contestInfo.field = '생활';
+                if (v.contestInfo.field === 'web') v.contestInfo.field = '웹';
+                if (v.contestInfo.field === 'application') v.contestInfo.field = '응용';
+                if (v.contestInfo.field === 'multimedia') v.contestInfo.field = '멀티미디어';
+                this.list.push(v);
+              });
+            })
+            .catch(() => alert('페이지로드에 실패했습니다.'));
+        }
       },
     },
     created() {
