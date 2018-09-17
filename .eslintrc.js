@@ -27,5 +27,6 @@ module.exports = {
     'max-len': [2, 150, 4, {'ignoreUrls': true}],
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
+    "linebreak-style": [0],
   },
 };

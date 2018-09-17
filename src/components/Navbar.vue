@@ -7,9 +7,9 @@
 </template>
 
 <script>
-export default {
-  name: 'navigation-bar',
-}
+  export default {
+    name: 'navigation-bar',
+  };
 </script>
 
 <style>
