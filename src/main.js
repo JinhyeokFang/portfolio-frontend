@@ -3,9 +3,10 @@
 import Vue from 'vue';
 import App from './App';
 import router from './router';
+import bsl from 'vue-bottom-scroll-listener';
 
 Vue.config.productionTip = false;
-
+App.use(bsl);
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

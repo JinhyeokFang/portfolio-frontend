@@ -73,7 +73,6 @@
                 </div>
               </div>
             </div>
-
             <!-- <div>
               <span>연도</span> <input type="number" min="2016" :max="new Date().getFullYear()" id="min_year" v-model="min_year"
                                      title="Min Year"><input type="number" min="2016" :max="new Date().getFullYear()" id="max_year"
@@ -90,25 +89,12 @@
         </div>
       </div>
       <div class="row projects">
-        <!-- <div class="result header">
-          <div class="result title">
-            <h1>검색결과</h1>
-            <div class="bar"></div>
-          </div>
-          <div class="result-order-select">
-            <select>
-              <option value="">-</option>
-              <option value="">-</option>
-              <option value="">-</option>
-            </select>
-          </div>
-        </div> -->
-        <section class="result-cards">
+        <bottom-scroll class="result-cards" @on-bottom="moreLoad">
           <work-card class="work-card" v-for="(item,index) in list" :projectName="item.projectName" :groups="item.groups"
                      :team="item.developers"
                      :contestInfo="item.contestInfo" :id="item.id" :qualification="item.qualification" :brief="item.brief" :key="index">
           </work-card>
-        </section>
+        </bottom-scroll>
       </div>
     </section>
   </div>
@@ -133,14 +119,8 @@
         max_year: 2018,
         developer: '',
         projectName: '',
-      };
-    },
-    methods: {
-      waitSearch() {
-        setTimeout(() => this.search(), 1);
-      },
-      search() {
-        /**
+        loadedPage: 1,
+        /** search options
          * division: string,
          * min: number,
          * max: number,
@@ -159,9 +139,18 @@
          * developer: string,
          * name : string
          */
-        const options = {
+        options: {
           division: 'software',
-        };
+        },
+      };
+    },
+    methods: {
+      waitSearch() {
+        setTimeout(() => this.search(), 1);
+      },
+      search() {
+        const options = this.options.extend({page: 1});
+        this.loadedPage = 1;
         this.checkedType.forEach((checkedType) => options[checkedType.split('_')[1]] = true);
         if (this.min_year >= 2016 && this.min_year <= 2018) options.min = this.min_year;
         if (this.max_year >= 2016 && this.max_year <= 2018) options.max = this.max_year;
@@ -193,20 +182,33 @@
           alert('검색할 조건을 선택하시거나 입력하여주세요.');
         }
       },
-      pv_sc() {
-
+      moreLoad() {
+        const options = this.options.extend({page: ++this.loadedPage});
+        axios.get(generator(options))
+          .then((res) => {
+            res.data.forEach((v) => {
+              const contest = {
+                'digital-contents': '디지털 콘텐츠 경진대회',
+                'mobile-contents': '모바일 콘텐츠 경진대회',
+                'sunrin-thon': '선린 해커톤',
+              };
+              const prize = ['대상', '금상'];
+              v.contestInfo.type = contest[v.contestInfo.type];
+              v.contestInfo.rate = prize[v.contestInfo.rate - 1];
+              if (v.contestInfo.field === 'game') v.contestInfo.field = '게임';
+              if (v.contestInfo.field === 'life') v.contestInfo.field = '생활';
+              if (v.contestInfo.field === 'web') v.contestInfo.field = '웹';
+              if (v.contestInfo.field === 'application') v.contestInfo.field = '응용';
+              if (v.contestInfo.field === 'multimedia') v.contestInfo.field = '멀티미디어';
+              this.list.push(v);
+            });
+          })
+          .catch(() => alert('페이지로드에 실패했습니다.'));
       },
     },
     created() {
       this.search();
     },
-    mounted() {
-
-    },
-    destroyed() {
-      document.removeEventListener();
-    },
-
   };
 </script>
 
