@@ -5918,13 +5918,6 @@ vm-browserify@0.0.4:
   dependencies:
     indexof "0.0.1"
 
-vue-bottom-scroll-listener@^0.1.4:
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/vue-bottom-scroll-listener/-/vue-bottom-scroll-listener-0.1.4.tgz#0ba61fa552010e6f778269ee6b18b4dce5ef376f"
-  dependencies:
-    lodash "^4.17.10"
-    vue "^2.5.17"
-
 vue-eslint-parser@^2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/vue-eslint-parser/-/vue-eslint-parser-2.0.3.tgz#c268c96c6d94cfe3d938a5f7593959b0ca3360d1"
@@ -5980,7 +5973,7 @@ vue-template-es2015-compiler@^1.6.0:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.6.0.tgz#dc42697133302ce3017524356a6c61b7b69b4a18"
 
-vue@^2.5.16, vue@^2.5.17, vue@^2.5.2:
+vue@^2.5.16, vue@^2.5.2:
   version "2.5.17"
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.5.17.tgz#0f8789ad718be68ca1872629832ed533589c6ada"
 

@@ -89,12 +89,12 @@
         </div>
       </div>
       <div class="row projects">
-        <bottom-scroll class="result-cards" @on-bottom="moreLoad">
+        <div class="result-cards" id="result">
           <work-card class="work-card" v-for="(item,index) in list" :projectName="item.projectName" :groups="item.groups"
                      :team="item.developers"
                      :contestInfo="item.contestInfo" :id="item.id" :qualification="item.qualification" :brief="item.brief" :key="index">
           </work-card>
-        </bottom-scroll>
+        </div>
       </div>
     </section>
   </div>
@@ -138,7 +138,9 @@
          * silver: boolean,
          * bronze: boolean,
          * developer: string,
-         * name : string
+         * name : string,
+         * page : int
+         * itemperpage: 10
          */
         options: {
           division: 'software',
@@ -150,7 +152,7 @@
         setTimeout(() => this.search(), 1);
       },
       search() {
-        const options = this.options.extend({page: 1});
+        const options = {...this.options, ...{page: 1}};
         this.loadedPage = 1;
         this.checkedType.forEach((checkedType) => options[checkedType.split('_')[1]] = true);
         if (this.min_year >= 2016 && this.min_year <= 2018) options.min = this.min_year;
@@ -185,8 +187,9 @@
         }
       },
       moreLoad() {
-        if (this.loadedPage * 10 < this.total) {
-          const options = this.options.extend({page: ++this.loadedPage});
+        // eslint-disable-next-line max-len
+        if (document.querySelector('#result').scrollTop >= document.querySelector('#result').scrollHeight - 800 && this.loadedPage * 10 < this.total) {
+          const options = {...this.options, ...{page: ++this.loadedPage}};
           axios.get(generator(options))
             .then((res) => {
               res.data.list.forEach((v) => {
@@ -212,6 +215,12 @@
     },
     created() {
       this.search();
+    },
+    mounted() {
+      document.querySelector('#result').addEventListener('scroll', this.moreLoad);
+    },
+    destroyed() {
+      document.querySelector('#result').removeEventListener('scroll', this.moreLoad);
     },
   };
 </script>

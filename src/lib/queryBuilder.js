@@ -120,7 +120,7 @@ export function generator(options) {
   if (options.grand || options.gold || options.silver || options.bronze) queries.push(rate(options.grand, options.gold, options.silver, options.bronze));
   if (options.developer) queries.push(developer(options.developer));
   if (options.name) queries.push(name(options.name));
-  return `${server}/api/list?page=${options.page}&${queries.join('&')}`;
+  return `${server}/api/list?page=${options.page}&itemperpage=10&${queries.join('&')}`;
 }
 
 export {server};
