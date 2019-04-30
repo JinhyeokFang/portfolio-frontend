@@ -14,6 +14,7 @@
     "axios": "^0.18.0",
     "github-markdown-css": "^2.10.0",
     "showdown": "^1.9.0",
+    "style-loader": "^0.23.1",
     "vue": "^2.6.6",
     "vue-router": "^3.0.2",
     "vuesax": "^3.8.20"
@@ -58,14 +59,14 @@
     "shelljs": "^0.8.3",
     "uglifyjs-webpack-plugin": "^2.1.1",
     "url-loader": "^1.1.2",
-    "vue-loader": "^15.6.2",
+    "vue-loader": "^15.7.0",
     "vue-style-loader": "^4.1.2",
-    "vue-template-compiler": "^2.6.6",
+    "vue-template-compiler": "^2.6.10",
     "webpack": "^3.12.0",
     "webpack-bundle-analyzer": "3.0.4",
+    "webpack-cli": "^3.2.3",
     "webpack-dev-server": "2.11.3",
-    "webpack-merge": "^4.2.1",
-    "webpack-cli": "^3.2.3"
+    "webpack-merge": "^4.2.1"
   },
   "engines": {
     "node": ">= 6.0.0",
